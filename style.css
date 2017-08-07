@@ -5,3 +5,22 @@
 body {
     background-color: #818181;
 }
+
+.time-setter {
+    display: inline-block;
+    text-align: center;
+    margin: 10% 200px 0;
+}
+
+#clock {
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    border: solid;
+    border-radius: 100%;
+}
+
+#clock-timer {
+    margin-top: 100px;
+}
