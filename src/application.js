@@ -12,26 +12,14 @@ function Application() {
         })
     }
 
-    function decrementBreakTimerOnClick() {
-        updateTimerOnClick($("#decrement-break"), $("#break-timer"), DECREMENT);
-    }
-
-    function incrementBreakTimerOnClick() {
-        updateTimerOnClick($("#increment-break"), $("#break-timer"), INCREMENT);
-    }
-
-    function incrementSessionTimerOnClick() {
-        updateTimerOnClick($("#increment-session"), $("#session-timer"), INCREMENT);
-    }
-
-    function decrementSessionTimerOnClick() {
-        updateTimerOnClick($("#decrement-session"), $("#session-timer"), DECREMENT);
-    }
-
     this.init = function () {
-        decrementBreakTimerOnClick();
-        incrementBreakTimerOnClick();
-        incrementSessionTimerOnClick();
-        decrementSessionTimerOnClick();
+        
+        var $break = $("#break-timer");
+        updateTimerOnClick($("#decrement-break"), $break, DECREMENT);
+        updateTimerOnClick($("#increment-break"), $break, INCREMENT);
+
+        var $session = $("#session-timer");
+        updateTimerOnClick($("#increment-session"), $session, INCREMENT);
+        updateTimerOnClick($("#decrement-session"), $session, DECREMENT);
     };
 }
