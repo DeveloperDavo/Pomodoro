@@ -1,11 +1,14 @@
 'use strict';
 
 describe("application", function () {
+
     var container, application;
 
     beforeEach(function () {
         container = fixture(
-            '<div id="sample">sample html</div>'
+            '<div id="sample">sample html</div>' +
+            '<button id="increment-break">+</button>' +
+            '<span id="break-timer">5</span>'
         );
         document.body.appendChild(container);
         application = new Application(document);
@@ -15,10 +18,16 @@ describe("application", function () {
         document.body.removeChild(container);
     });
 
+    it('should increment break timer once', function () {
+        application.init();
+        var breakTimerElement = document.getElementById('break-timer');
+        breakTimerElement.innerHTML = "5";
 
-    it('it should display sample html', function () {
-        expect(document.getElementById('sample').textContent).toEqual('sample html');
+        document.getElementById('increment-break').click();
+
+        expect(breakTimerElement.innerHTML).toEqual('6');
     });
+
 
 });
 
