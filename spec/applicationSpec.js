@@ -11,7 +11,8 @@ describe("application", function () {
             '<button id="increment-break">+</button>' +
             '<button id="decrement-session">&minus;</button>' +
             '<span id="session-timer">25</span>' +
-            '<button id="increment-session">+</button>'
+            '<button id="increment-session">+</button>' +
+            '<h3 id="clock-time">24:59</h3>'
         );
         document.body.appendChild(container);
         application = new Application(document);
@@ -91,6 +92,15 @@ describe("application", function () {
         document.getElementById('decrement-session').click();
 
         expect(sessionTimerElement.innerHTML).toEqual('23');
+    });
+
+    it('should update clock time to show session timer', function () {
+        application.init();
+
+        document.getElementById('session-timer').innerHTML = "25";
+        document.getElementById('increment-session').click();
+
+        expect(document.getElementById('clock-time').innerHTML).toEqual('26');
     });
 
 });
