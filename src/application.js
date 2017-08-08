@@ -4,14 +4,14 @@ function Application() {
     var DECREMENT = false;
     var INCREMENT = true;
 
-    var $SESSION_TIMER = $("#session-timer");
+    var $SESSION_LENGTH = $("#session-length");
 
-    function updateTimerOnClick(crementButton, timerElement, isIncrement) {
+    function updateLengthOnClick(crementButton, lengthElement, isIncrement) {
         crementButton.click(function () {
-            var time = Number(timerElement.text());
-            var newTime = isIncrement ? time + 1 : time - 1;
-            timerElement.text(newTime);
-            if (timerElement === $SESSION_TIMER) {
+            var length = Number(lengthElement.text());
+            var newLength = isIncrement ? length + 1 : length - 1;
+            lengthElement.text(newLength);
+            if (lengthElement === $SESSION_LENGTH) {
                 $("#clock-time").text("26");
             }
         })
@@ -19,11 +19,11 @@ function Application() {
 
     this.init = function () {
 
-        var $break = $("#break-timer");
-        updateTimerOnClick($("#decrement-break"), $break, DECREMENT);
-        updateTimerOnClick($("#increment-break"), $break, INCREMENT);
+        var $break = $("#break-length");
+        updateLengthOnClick($("#decrement-break"), $break, DECREMENT);
+        updateLengthOnClick($("#increment-break"), $break, INCREMENT);
 
-        updateTimerOnClick($("#increment-session"), $SESSION_TIMER, INCREMENT);
-        updateTimerOnClick($("#decrement-session"), $SESSION_TIMER, DECREMENT);
+        updateLengthOnClick($("#increment-session"), $SESSION_LENGTH, INCREMENT);
+        updateLengthOnClick($("#decrement-session"), $SESSION_LENGTH, DECREMENT);
     };
 }

@@ -7,10 +7,10 @@ describe("application", function () {
     beforeEach(function () {
         container = fixture(
             '<button id="decrement-break">&minus;</button>' +
-            '<span id="break-timer">5</span>' +
+            '<span id="break-length">5</span>' +
             '<button id="increment-break">+</button>' +
             '<button id="decrement-session">&minus;</button>' +
-            '<span id="session-timer">25</span>' +
+            '<span id="session-length">25</span>' +
             '<button id="increment-session">+</button>' +
             '<h3 id="clock-time">24:59</h3>'
         );
@@ -22,82 +22,82 @@ describe("application", function () {
         document.body.removeChild(container);
     });
 
-    it('should increment break timer once', function () {
+    it('should increment break break length by 1', function () {
         application.init();
-        var breakTimerElement = document.getElementById('break-timer');
-        breakTimerElement.innerHTML = "5";
+        var breakLengthElement = document.getElementById('break-length');
+        breakLengthElement.innerHTML = "5";
 
         document.getElementById('increment-break').click();
 
-        expect(breakTimerElement.innerHTML).toEqual('6');
+        expect(breakLengthElement.innerHTML).toEqual('6');
     });
 
-    it('should increment break timer twice', function () {
+    it('should increment break length by 2', function () {
         application.init();
-        var breakTimerElement = document.getElementById('break-timer');
-        breakTimerElement.innerHTML = "5";
+        var breakLengthElement = document.getElementById('break-length');
+        breakLengthElement.innerHTML = "5";
 
         document.getElementById('increment-break').click();
         document.getElementById('increment-break').click();
 
-        expect(breakTimerElement.innerHTML).toEqual('7');
+        expect(breakLengthElement.innerHTML).toEqual('7');
     });
 
-    it('should decrement break timer', function () {
+    it('should decrement break length', function () {
         application.init();
-        var breakTimerElement = document.getElementById('break-timer');
-        breakTimerElement.innerHTML = "5";
+        var breakLengthElement = document.getElementById('break-length');
+        breakLengthElement.innerHTML = "5";
 
         document.getElementById('decrement-break').click();
 
-        expect(breakTimerElement.innerHTML).toEqual('4');
+        expect(breakLengthElement.innerHTML).toEqual('4');
 
         document.getElementById('decrement-break').click();
 
-        expect(breakTimerElement.innerHTML).toEqual('3');
+        expect(breakLengthElement.innerHTML).toEqual('3');
     });
 
-    it('should increment session timer once', function () {
+    it('should increment session length by 1', function () {
         application.init();
 
-        var sessionTimerElement = document.getElementById('session-timer');
-        sessionTimerElement.innerHTML = "25";
+        var sessionLengthElement = document.getElementById('session-length');
+        sessionLengthElement.innerHTML = "25";
 
         document.getElementById('increment-session').click();
 
-        expect(sessionTimerElement.innerHTML).toEqual('26');
+        expect(sessionLengthElement.innerHTML).toEqual('26');
     });
 
-    it('should increment session timer twice', function () {
+    it('should increment session length by 2', function () {
         application.init();
 
-        var sessionTimerElement = document.getElementById('session-timer');
-        sessionTimerElement.innerHTML = "25";
+        var sessionLengthElement = document.getElementById('session-length');
+        sessionLengthElement.innerHTML = "25";
 
         document.getElementById('increment-session').click();
         document.getElementById('increment-session').click();
 
-        expect(sessionTimerElement.innerHTML).toEqual('27');
+        expect(sessionLengthElement.innerHTML).toEqual('27');
     });
 
-    it('should decrement session timer', function () {
+    it('should decrement session length', function () {
         application.init();
-        var sessionTimerElement = document.getElementById('session-timer');
-        sessionTimerElement.innerHTML = "25";
+        var sessionLengthElement = document.getElementById('session-length');
+        sessionLengthElement.innerHTML = "25";
 
         document.getElementById('decrement-session').click();
 
-        expect(sessionTimerElement.innerHTML).toEqual('24');
+        expect(sessionLengthElement.innerHTML).toEqual('24');
 
         document.getElementById('decrement-session').click();
 
-        expect(sessionTimerElement.innerHTML).toEqual('23');
+        expect(sessionLengthElement.innerHTML).toEqual('23');
     });
 
-    it('should update clock time to show session timer', function () {
+    it('should update clock time to show session length', function () {
         application.init();
 
-        document.getElementById('session-timer').innerHTML = "25";
+        document.getElementById('session-length').innerHTML = "25";
         document.getElementById('increment-session').click();
 
         expect(document.getElementById('clock-time').innerHTML).toEqual('26');
