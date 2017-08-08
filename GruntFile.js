@@ -5,7 +5,9 @@ module.exports = function (grunt) {
         src: ['src/**/*.js'],
         options: {
           specs: ['spec/**/*Spec.js'],
-          vendor: []
+          vendor: [
+              'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'
+          ]
         }
       }
     });
