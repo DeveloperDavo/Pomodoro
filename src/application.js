@@ -24,9 +24,14 @@ function Application() {
         updateTimerOnClick($("#increment-session"), $("#session-timer"), INCREMENT);
     }
 
+    function decrementSessionTimerOnClick() {
+        updateTimerOnClick($("#decrement-session"), $("#session-timer"), DECREMENT);
+    }
+
     this.init = function () {
         decrementBreakTimerOnClick();
         incrementBreakTimerOnClick();
         incrementSessionTimerOnClick();
+        decrementSessionTimerOnClick();
     };
 }

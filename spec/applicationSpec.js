@@ -79,6 +79,20 @@ describe("application", function () {
         expect(sessionTimerElement.innerHTML).toEqual('27');
     });
 
+    it('should decrement session timer', function () {
+        application.init();
+        var sessionTimerElement = document.getElementById('session-timer');
+        sessionTimerElement.innerHTML = "25";
+
+        document.getElementById('decrement-session').click();
+
+        expect(sessionTimerElement.innerHTML).toEqual('24');
+
+        document.getElementById('decrement-session').click();
+
+        expect(sessionTimerElement.innerHTML).toEqual('23');
+    });
+
 });
 
 function fixture(html) {
