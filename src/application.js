@@ -18,6 +18,12 @@ function Application() {
         breakTimerElement.text(getNewBreakTime(breakTimer, isIncrement));
     }
 
+    function updateSessionTimerText(isIncrement) {
+        var breakTimerElement = $("#session-timer");
+        var breakTimer = Number(breakTimerElement.text());
+        breakTimerElement.text(getNewBreakTime(breakTimer, isIncrement));
+    }
+
     function decrementBreakTimerOnClick() {
         $("#decrement-break").click(function () {
             updateBreakTimerText(DECREMENT);
@@ -32,7 +38,7 @@ function Application() {
 
     function incrementSessionTimerOnClick() {
         $("#increment-session").click(function () {
-            $("#session-timer").text("26");
+            updateSessionTimerText(INCREMENT);
         })
 
     }

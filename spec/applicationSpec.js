@@ -67,6 +67,17 @@ describe("application", function () {
         expect(sessionTimerElement.innerHTML).toEqual('26');
     });
 
+    it('should increment session timer twice', function () {
+        application.init();
+
+        var sessionTimerElement = document.getElementById('session-timer');
+        sessionTimerElement.innerHTML = "25";
+
+        document.getElementById('increment-session').click();
+        document.getElementById('increment-session').click();
+
+        expect(sessionTimerElement.innerHTML).toEqual('27');
+    });
 
 });
 
