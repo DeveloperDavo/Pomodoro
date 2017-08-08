@@ -30,8 +30,16 @@ function Application() {
         })
     }
 
+    function incrementSessionTimerOnClick() {
+        $("#increment-session").click(function () {
+            $("#session-timer").text("26");
+        })
+
+    }
+
     this.init = function () {
         decrementBreakTimerOnClick();
         incrementBreakTimerOnClick();
+        incrementSessionTimerOnClick();
     };
 }

@@ -8,7 +8,10 @@ describe("application", function () {
         container = fixture(
             '<button id="decrement-break">&minus;</button>' +
             '<span id="break-timer">5</span>' +
-            '<button id="increment-break">+</button>'
+            '<button id="increment-break">+</button>' +
+            '<button id="decrement-session">&minus;</button>' +
+            '<span id="session-timer">25</span>' +
+            '<button id="increment-session">+</button>'
         );
         document.body.appendChild(container);
         application = new Application(document);
@@ -52,6 +55,18 @@ describe("application", function () {
 
         expect(breakTimerElement.innerHTML).toEqual('3');
     });
+
+    it('should increment session timer once', function () {
+        application.init();
+
+        var sessionTimerElement = document.getElementById('session-timer');
+        sessionTimerElement.innerHTML = "25";
+
+        document.getElementById('increment-session').click();
+
+        expect(sessionTimerElement.innerHTML).toEqual('26');
+    });
+
 
 });
 
