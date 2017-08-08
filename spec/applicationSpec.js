@@ -6,9 +6,9 @@ describe("application", function () {
 
     beforeEach(function () {
         container = fixture(
-            '<div id="sample">sample html</div>' +
-            '<button id="increment-break">+</button>' +
-            '<span id="break-timer">5</span>'
+            '<button id="decrement-break">&minus;</button>' +
+            '<span id="break-timer">5</span>' +
+            '<button id="increment-break">+</button>'
         );
         document.body.appendChild(container);
         application = new Application(document);
@@ -39,6 +39,19 @@ describe("application", function () {
         expect(breakTimerElement.innerHTML).toEqual('7');
     });
 
+    it('should decrement break timer', function () {
+        application.init();
+        var breakTimerElement = document.getElementById('break-timer');
+        breakTimerElement.innerHTML = "5";
+
+        document.getElementById('decrement-break').click();
+
+        expect(breakTimerElement.innerHTML).toEqual('4');
+
+        document.getElementById('decrement-break').click();
+
+        expect(breakTimerElement.innerHTML).toEqual('3');
+    });
 
 });
 
