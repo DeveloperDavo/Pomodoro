@@ -94,7 +94,7 @@ describe("application", function () {
         expect(sessionLengthElement.innerHTML).toEqual('23');
     });
 
-    it('should update clock time to show session length', function () {
+    it('should update clock time when session length is incremented', function () {
         application.init();
 
         document.getElementById('session-length').innerHTML = "25";
@@ -103,6 +103,16 @@ describe("application", function () {
         expect(document.getElementById('clock-time').innerHTML).toEqual('26');
     });
 
+    it('should not update clock time when break length is incremented', function () {
+        application.init();
+
+        document.getElementById('clock-time').innerHTML = "25";
+
+        document.getElementById('break-length').innerHTML = "5";
+        document.getElementById('increment-break').click();
+
+        expect(document.getElementById('clock-time').innerHTML).toEqual('25');
+    });
 });
 
 function fixture(html) {
