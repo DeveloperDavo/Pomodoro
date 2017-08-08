@@ -28,6 +28,17 @@ describe("application", function () {
         expect(breakTimerElement.innerHTML).toEqual('6');
     });
 
+    it('should increment break timer twice', function () {
+        application.init();
+        var breakTimerElement = document.getElementById('break-timer');
+        breakTimerElement.innerHTML = "5";
+
+        document.getElementById('increment-break').click();
+        document.getElementById('increment-break').click();
+
+        expect(breakTimerElement.innerHTML).toEqual('7');
+    });
+
 
 });
 
