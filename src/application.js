@@ -4,43 +4,24 @@ function Application() {
     var DECREMENT = false;
     var INCREMENT = true;
 
-    function getNewBreakTime(timer, isIncrement) {
-        if (isIncrement) {
-            return timer + 1;
-        } else {
-            return timer - 1;
-        }
-    }
-
-    function updateBreakTimerText(isIncrement) {
-        var breakTimerElement = $("#break-timer");
-        var breakTimer = Number(breakTimerElement.text());
-        breakTimerElement.text(getNewBreakTime(breakTimer, isIncrement));
-    }
-
-    function updateSessionTimerText(isIncrement) {
-        var breakTimerElement = $("#session-timer");
-        var breakTimer = Number(breakTimerElement.text());
-        breakTimerElement.text(getNewBreakTime(breakTimer, isIncrement));
+    function updateTimerOnClick(crementButton, timerElement, isIncrement) {
+        crementButton.click(function () {
+            var time = Number(timerElement.text());
+            var newTime = isIncrement ? time + 1 : time - 1;
+            timerElement.text(newTime);
+        })
     }
 
     function decrementBreakTimerOnClick() {
-        $("#decrement-break").click(function () {
-            updateBreakTimerText(DECREMENT);
-        })
+        updateTimerOnClick($("#decrement-break"), $("#break-timer"), DECREMENT);
     }
 
     function incrementBreakTimerOnClick() {
-        $("#increment-break").click(function () {
-            updateBreakTimerText(INCREMENT);
-        })
+        updateTimerOnClick($("#increment-break"), $("#break-timer"), INCREMENT);
     }
 
     function incrementSessionTimerOnClick() {
-        $("#increment-session").click(function () {
-            updateSessionTimerText(INCREMENT);
-        })
-
+        updateTimerOnClick($("#increment-session"), $("#session-timer"), INCREMENT);
     }
 
     this.init = function () {
