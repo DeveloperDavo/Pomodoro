@@ -1,14 +1,17 @@
 'use strict';
 
 function Application() {
+    var INITIAL_SESSION_TIME = 25;
+
     var DECREMENT = false;
     var INCREMENT = true;
 
     var $SESSION_LENGTH = $("#session-length");
+    var $CLOCK = $("#clock-time");
 
     function updateClockTime(lengthElement, newLength) {
         if (lengthElement === $SESSION_LENGTH) {
-            $("#clock-time").text(newLength);
+            $CLOCK.text(newLength);
         }
     }
 
@@ -24,6 +27,8 @@ function Application() {
     }
 
     this.init = function () {
+
+        $CLOCK.text(INITIAL_SESSION_TIME);
 
         var $break = $("#break-length");
         updateLengthOnClick($("#decrement-break"), $break, DECREMENT);

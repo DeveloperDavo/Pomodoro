@@ -7,12 +7,12 @@ describe("application", function () {
     beforeEach(function () {
         container = fixture(
             '<button id="decrement-break">&minus;</button>' +
-            '<span id="break-length">5</span>' +
+            '<span id="break-length"></span>' +
             '<button id="increment-break">+</button>' +
             '<button id="decrement-session">&minus;</button>' +
-            '<span id="session-length">25</span>' +
+            '<span id="session-length"></span>' +
             '<button id="increment-session">+</button>' +
-            '<h3 id="clock-time">24:59</h3>'
+            '<h3 id="clock-time"></h3>'
         );
         document.body.appendChild(container);
         application = new Application(document);
@@ -120,6 +120,12 @@ describe("application", function () {
 
         document.getElementById('break-length').innerHTML = "5";
         document.getElementById('increment-break').click();
+
+        expect(document.getElementById('clock-time').innerHTML).toEqual('25');
+    });
+
+    it('should display a clock time of 25 upon initialisation', function () {
+        application.init();
 
         expect(document.getElementById('clock-time').innerHTML).toEqual('25');
     });
