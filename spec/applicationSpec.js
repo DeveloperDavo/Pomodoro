@@ -185,6 +185,25 @@ describe("application", function () {
         expect(document.getElementById('clock-mode').innerHTML).toEqual("BREAK");
     });
 
+    it('should not update break length when incrementing after the countdown has started', function () {
+        application.init();
+        document.getElementById('clock').click();
+
+        document.getElementById('increment-break').click();
+
+        expect(document.getElementById('break-length').innerHTML).toEqual('5');
+    });
+
+    it('should not update break length when decrementing after the countdown has started', function () {
+        application.init();
+        document.getElementById('clock').click();
+
+        document.getElementById('decrement-break').click();
+
+        expect(document.getElementById('break-length').innerHTML).toEqual('5');
+    });
+
+
 });
 
 function fixture(html) {

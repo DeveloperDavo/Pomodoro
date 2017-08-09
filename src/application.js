@@ -45,6 +45,8 @@ function Application() {
         });
         $("#increment-session").prop('disabled', true);
         $("#decrement-session").prop('disabled', true);
+        $("#increment-break").prop('disabled', true);
+        $("#decrement-break").prop('disabled', true);
     };
 
     function startSessionCountdownOnClick() {
