@@ -140,6 +140,15 @@ describe("application", function () {
         expect(document.getElementById('clock-time').children[0].innerHTML).toEqual("25:00");
     });
 
+    it('should start countdown at 26:00 when clicking the clock after incrementing the session length', function () {
+        application.init();
+        document.getElementById('increment-session').click();
+
+        document.getElementById('clock').click();
+
+        expect(document.getElementById('clock-time').children[0].innerHTML).toEqual("26:00");
+    });
+
 });
 
 function fixture(html) {
