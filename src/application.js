@@ -16,8 +16,7 @@ function Application() {
 
     function updateLengthOnClick(crementButton, lengthElement) {
         crementButton.click(function () {
-            var length = Number(lengthElement.text());
-            sessionLength = crementButton.val() === "increment" ? ++length : --length;
+            sessionLength = crementButton.val() === "increment" ? ++sessionLength : --sessionLength;
 
             lengthElement.text(sessionLength);
 
@@ -41,10 +40,6 @@ function Application() {
 
         $CLOCK.text(INITIAL_SESSION_LENGTH);
         $SESSION_LENGTH.text(INITIAL_SESSION_LENGTH);
-
-        var $break = $("#break-length");
-        updateLengthOnClick($("#decrement-break"), $break);
-        updateLengthOnClick($("#increment-break"), $break);
 
         updateLengthOnClick($("#increment-session"), $SESSION_LENGTH);
         updateLengthOnClick($("#decrement-session"), $SESSION_LENGTH);
