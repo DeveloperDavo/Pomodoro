@@ -101,6 +101,14 @@ describe("application", function () {
         expect(document.getElementById('clock-time').children[0].innerHTML).toEqual("26:00");
     });
 
+    it('should not update session length when incrementing after the countdown has started', function () {
+        application.init();
+        document.getElementById('clock').click();
+
+        document.getElementById('increment-session').click();
+
+        expect(document.getElementById('session-length').innerHTML).toEqual('25');
+    });
 });
 
 function fixture(html) {

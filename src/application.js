@@ -32,6 +32,7 @@ function Application() {
                 format: 'MS',
                 description: ''
             });
+            $("#increment-session").prop('disabled', true);
         });
     }
 
