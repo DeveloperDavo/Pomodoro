@@ -40,24 +40,24 @@ function Application() {
         })
     }
 
-    var startSessionCountdown = function () {
+    var startCountdown = function (length) {
         $CLOCK_TIME.countdown({
-            until: sessionLength * 60,
+            until: length * 60,
             onExpiry: startBreakCountdown,
             alwaysExpire: true,
             compact: true,
             format: 'MS',
             description: ''
         });
-        $INCREMENT_SESSION.prop('disabled', true);
-        $DECREMENT_SESSION.prop('disabled', true);
-        $INCREMENT_BREAK.prop('disabled', true);
-        $DECREMENT_BREAK.prop('disabled', true);
     };
 
     function startSessionCountdownOnClick() {
         $('#clock').click(function () {
-            startSessionCountdown();
+            startCountdown(sessionLength);
+            $INCREMENT_SESSION.prop('disabled', true);
+            $DECREMENT_SESSION.prop('disabled', true);
+            $INCREMENT_BREAK.prop('disabled', true);
+            $DECREMENT_BREAK.prop('disabled', true);
         });
     }
 
@@ -67,12 +67,7 @@ function Application() {
 
         $("#clock-mode").text(BREAK_MODE);
 
-        $CLOCK_TIME.countdown({
-            until: breakLength * 60,
-            compact: true,
-            format: 'MS',
-            description: ''
-        });
+        startCountdown(breakLength);
     }
 
     this.init = function () {
