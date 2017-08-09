@@ -15,7 +15,7 @@ function Application() {
     function updateLengthOnClick(crementButton, lengthElement) {
         crementButton.click(function () {
             var length = Number(lengthElement.text());
-            var newLength = crementButton.val() === "increment" ? length + 1 : length - 1;
+            var newLength = crementButton.val() === "increment" ? ++length : --length;
 
             lengthElement.text(newLength);
 
