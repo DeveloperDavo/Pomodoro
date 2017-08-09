@@ -3,9 +3,6 @@
 function Application() {
     var INITIAL_SESSION_TIME = 25;
 
-    var DECREMENT = false;
-    var INCREMENT = true;
-
     var $SESSION_LENGTH = $("#session-length");
     var $CLOCK = $("#clock-time");
 
@@ -15,10 +12,10 @@ function Application() {
         }
     }
 
-    function updateLengthOnClick(crementButton, lengthElement, isIncrement) {
+    function updateLengthOnClick(crementButton, lengthElement) {
         crementButton.click(function () {
             var length = Number(lengthElement.text());
-            var newLength = isIncrement ? length + 1 : length - 1;
+            var newLength = crementButton.val() === "increment" ? length + 1 : length - 1;
 
             lengthElement.text(newLength);
 
@@ -31,10 +28,10 @@ function Application() {
         $CLOCK.text(INITIAL_SESSION_TIME);
 
         var $break = $("#break-length");
-        updateLengthOnClick($("#decrement-break"), $break, DECREMENT);
-        updateLengthOnClick($("#increment-break"), $break, INCREMENT);
+        updateLengthOnClick($("#decrement-break"), $break);
+        updateLengthOnClick($("#increment-break"), $break);
 
-        updateLengthOnClick($("#increment-session"), $SESSION_LENGTH, INCREMENT);
-        updateLengthOnClick($("#decrement-session"), $SESSION_LENGTH, DECREMENT);
+        updateLengthOnClick($("#increment-session"), $SESSION_LENGTH);
+        updateLengthOnClick($("#decrement-session"), $SESSION_LENGTH);
     };
 }

@@ -6,12 +6,12 @@ describe("application", function () {
 
     beforeEach(function () {
         container = fixture(
-            '<button id="decrement-break">&minus;</button>' +
+            '<button id="decrement-break" value="decrement">&minus;</button>' +
             '<span id="break-length"></span>' +
-            '<button id="increment-break">+</button>' +
-            '<button id="decrement-session">&minus;</button>' +
+            '<button id="increment-break" value="increment">+</button>' +
+            '<button id="decrement-session" value="decrement">&minus;</button>' +
             '<span id="session-length"></span>' +
-            '<button id="increment-session">+</button>' +
+            '<button id="increment-session" value="increment">+</button>' +
             '<h3 id="clock-time"></h3>'
         );
         document.body.appendChild(container);
