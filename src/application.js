@@ -15,16 +15,18 @@ function Application() {
     function updateClockTime(lengthElement, newLength) {
         if (lengthElement === $SESSION_LENGTH) {
             $CLOCK.text(newLength);
+            sessionLength = newLength;
         }
     }
 
     function updateLengthOnClick(crementButton, lengthElement) {
         crementButton.click(function () {
-            sessionLength = crementButton.val() === INCREMENT_BUTTON_VALUE ? ++sessionLength : --sessionLength;
+            var length = Number(lengthElement.text());
+            var newLength = crementButton.val() === INCREMENT_BUTTON_VALUE ? ++length : --length;
 
-            lengthElement.text(sessionLength);
+            lengthElement.text(newLength);
 
-            updateClockTime(lengthElement, sessionLength);
+            updateClockTime(lengthElement, newLength);
         })
     }
 
@@ -50,6 +52,9 @@ function Application() {
 
         updateLengthOnClick($("#increment-session"), $SESSION_LENGTH);
         updateLengthOnClick($("#decrement-session"), $SESSION_LENGTH);
+
+        updateLengthOnClick($("#decrement-break"), $BREAK_LENGTH);
+        updateLengthOnClick($("#increment-break"), $BREAK_LENGTH);
 
         startCountdownOnClick();
     };

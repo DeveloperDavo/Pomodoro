@@ -30,12 +30,6 @@ describe("application", function () {
         expect(document.getElementById('session-length').innerHTML).toEqual('25');
     });
 
-    it('should display an initial break length of 5', function () {
-        application.init();
-
-        expect(document.getElementById('break-length').innerHTML).toEqual('5');
-    });
-
     it('should increment session length by 1', function () {
         application.init();
 
@@ -127,6 +121,74 @@ describe("application", function () {
 
         expect(document.getElementById('session-length').innerHTML).toEqual('25');
     });
+
+    it('should increment break length by 1', function () {
+        application.init();
+        var breakLengthElement = document.getElementById('break-length');
+        breakLengthElement.innerHTML = "5";
+
+        document.getElementById('increment-break').click();
+
+        expect(breakLengthElement.innerHTML).toEqual('6');
+    });
+
+    it('should increment break length by 2', function () {
+        application.init();
+        var breakLengthElement = document.getElementById('break-length');
+        breakLengthElement.innerHTML = "5";
+
+        document.getElementById('increment-break').click();
+        document.getElementById('increment-break').click();
+
+        expect(breakLengthElement.innerHTML).toEqual('7');
+    });
+
+    it('should decrement break length', function () {
+        application.init();
+        var breakLengthElement = document.getElementById('break-length');
+        breakLengthElement.innerHTML = "5";
+
+        document.getElementById('decrement-break').click();
+
+        expect(breakLengthElement.innerHTML).toEqual('4');
+
+        document.getElementById('decrement-break').click();
+
+        expect(breakLengthElement.innerHTML).toEqual('3');
+    });
+
+    it('should increment break length by 1', function () {
+        application.init();
+        document.getElementById('break-length').innerHTML = "5";
+
+        document.getElementById('increment-break').click();
+
+        expect(document.getElementById('break-length').innerHTML).toEqual('6');
+    });
+
+    it('should increment break length by 2', function () {
+        application.init();
+        document.getElementById('break-length').innerHTML = "5";
+
+        document.getElementById('increment-break').click();
+        document.getElementById('increment-break').click();
+
+        expect(document.getElementById('break-length').innerHTML).toEqual('7');
+    });
+
+    it('should decrement break length', function () {
+        application.init();
+        document.getElementById('break-length').innerHTML = "5";
+
+        document.getElementById('decrement-break').click();
+
+        expect(document.getElementById('break-length').innerHTML).toEqual('4');
+
+        document.getElementById('decrement-break').click();
+
+        expect(document.getElementById('break-length').innerHTML).toEqual('3');
+    });
+
 
 
 });
