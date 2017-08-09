@@ -124,41 +124,6 @@ describe("application", function () {
 
     it('should increment break length by 1', function () {
         application.init();
-        var breakLengthElement = document.getElementById('break-length');
-        breakLengthElement.innerHTML = "5";
-
-        document.getElementById('increment-break').click();
-
-        expect(breakLengthElement.innerHTML).toEqual('6');
-    });
-
-    it('should increment break length by 2', function () {
-        application.init();
-        var breakLengthElement = document.getElementById('break-length');
-        breakLengthElement.innerHTML = "5";
-
-        document.getElementById('increment-break').click();
-        document.getElementById('increment-break').click();
-
-        expect(breakLengthElement.innerHTML).toEqual('7');
-    });
-
-    it('should decrement break length', function () {
-        application.init();
-        var breakLengthElement = document.getElementById('break-length');
-        breakLengthElement.innerHTML = "5";
-
-        document.getElementById('decrement-break').click();
-
-        expect(breakLengthElement.innerHTML).toEqual('4');
-
-        document.getElementById('decrement-break').click();
-
-        expect(breakLengthElement.innerHTML).toEqual('3');
-    });
-
-    it('should increment break length by 1', function () {
-        application.init();
         document.getElementById('break-length').innerHTML = "5";
 
         document.getElementById('increment-break').click();
@@ -189,7 +154,16 @@ describe("application", function () {
         expect(document.getElementById('break-length').innerHTML).toEqual('3');
     });
 
+    it('should start countdown at 5:00 when session is over', function () {
+        application.init();
 
+        document.getElementById('session-length').innerHTML = "1";
+        document.getElementById('decrement-session').click();
+
+        document.getElementById('clock').click();
+
+        expect(document.getElementById('clock-time').children[0].innerHTML).toEqual("05:00");
+    });
 
 });
 

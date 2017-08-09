@@ -6,15 +6,16 @@ function Application() {
 
     var $SESSION_LENGTH = $("#session-length");
     var $BREAK_LENGTH = $("#break-length");
-    var $CLOCK = $("#clock-time");
+    var $CLOCK_TIME = $("#clock-time");
 
     var sessionLength = INITIAL_SESSION_LENGTH;
+    var breakLength = INITIAL_BREAK_LENGTH;
 
     var INCREMENT_BUTTON_VALUE = "increment";
 
     function updateClockTime(lengthElement, newLength) {
         if (lengthElement === $SESSION_LENGTH) {
-            $CLOCK.text(newLength);
+            $CLOCK_TIME.text(newLength);
             sessionLength = newLength;
         }
     }
@@ -30,23 +31,40 @@ function Application() {
         })
     }
 
-    function startCountdownOnClick() {
+    var startSessionCountdown = function () {
+        $CLOCK_TIME.countdown({
+            until: sessionLength * 60,
+            onExpiry: startBreakCountdown,
+            alwaysExpire: true,
+            compact: true,
+            format: 'MS',
+            description: ''
+        });
+        $("#increment-session").prop('disabled', true);
+        $("#decrement-session").prop('disabled', true);
+    };
+
+    function startSessionCountdownOnClick() {
         $('#clock').click(function () {
-            $CLOCK.countdown({
-                until: sessionLength * 60,
-                compact: true,
-                format: 'MS',
-                description: ''
-            });
-            $("#increment-session").prop('disabled', true);
-            $("#decrement-session").prop('disabled', true);
+            startSessionCountdown();
         });
     }
 
+    function startBreakCountdown() {
+        // reset clock
+        $CLOCK_TIME.removeAttr("class");
+
+        $CLOCK_TIME.countdown({
+            until: breakLength * 60,
+            compact: true,
+            format: 'MS',
+            description: ''
+        });
+    }
 
     this.init = function () {
 
-        $CLOCK.text(INITIAL_SESSION_LENGTH);
+        $CLOCK_TIME.text(INITIAL_SESSION_LENGTH);
         $SESSION_LENGTH.text(INITIAL_SESSION_LENGTH);
         $BREAK_LENGTH.text(INITIAL_BREAK_LENGTH);
 
@@ -56,6 +74,7 @@ function Application() {
         updateLengthOnClick($("#decrement-break"), $BREAK_LENGTH);
         updateLengthOnClick($("#increment-break"), $BREAK_LENGTH);
 
-        startCountdownOnClick();
+        startSessionCountdownOnClick();
     };
+
 }
