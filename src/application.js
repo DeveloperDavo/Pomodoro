@@ -15,6 +15,7 @@ function Application() {
     var $SESSION_LENGTH = $("#session-length");
     var $BREAK_LENGTH = $("#break-length");
 
+    var $CLOCK_MODE = $("#clock-mode");
     var $CLOCK_TIME = $("#clock-time");
 
     var sessionLength = INITIAL_SESSION_LENGTH;
@@ -65,17 +66,18 @@ function Application() {
         // reset clock
         $CLOCK_TIME.removeAttr("class");
 
-        $("#clock-mode").text(BREAK_MODE);
+        $CLOCK_MODE.text(BREAK_MODE);
 
         startCountdown(breakLength);
     }
 
     this.init = function () {
 
-        $CLOCK_TIME.text(INITIAL_SESSION_LENGTH);
-        $("#clock-mode").text(SESSION_MODE);
         $SESSION_LENGTH.text(INITIAL_SESSION_LENGTH);
         $BREAK_LENGTH.text(INITIAL_BREAK_LENGTH);
+
+        $CLOCK_TIME.text(INITIAL_SESSION_LENGTH);
+        $CLOCK_MODE.text(SESSION_MODE);
 
         updateLengthOnClick($INCREMENT_SESSION, $SESSION_LENGTH);
         updateLengthOnClick($DECREMENT_SESSION, $SESSION_LENGTH);
