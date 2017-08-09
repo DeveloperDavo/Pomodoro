@@ -33,6 +33,7 @@ function Application() {
                 description: ''
             });
             $("#increment-session").prop('disabled', true);
+            $("#decrement-session").prop('disabled', true);
         });
     }
 

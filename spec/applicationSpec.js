@@ -109,6 +109,15 @@ describe("application", function () {
 
         expect(document.getElementById('session-length').innerHTML).toEqual('25');
     });
+
+    it('should not update session length when decrementing after the countdown has started', function () {
+        application.init();
+        document.getElementById('clock').click();
+
+        document.getElementById('decrement-session').click();
+
+        expect(document.getElementById('session-length').innerHTML).toEqual('25');
+    });
 });
 
 function fixture(html) {
