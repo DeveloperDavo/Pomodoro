@@ -30,38 +30,33 @@ describe("application", function () {
     it('should increment session length by 1', function () {
         application.init();
 
-        var sessionLengthElement = document.getElementById('session-length');
-        sessionLengthElement.innerHTML = "25";
+        document.getElementById('session-length').innerHTML = "25";
 
         document.getElementById('increment-session').click();
 
-        expect(sessionLengthElement.innerHTML).toEqual('26');
+        expect(document.getElementById('session-length').innerHTML).toEqual('26');
     });
 
     it('should increment session length by 2', function () {
         application.init();
 
-        var sessionLengthElement = document.getElementById('session-length');
-        sessionLengthElement.innerHTML = "25";
-
         document.getElementById('increment-session').click();
         document.getElementById('increment-session').click();
 
-        expect(sessionLengthElement.innerHTML).toEqual('27');
+        expect(document.getElementById('session-length').innerHTML).toEqual('27');
     });
 
     it('should decrement session length', function () {
         application.init();
-        var sessionLengthElement = document.getElementById('session-length');
-        sessionLengthElement.innerHTML = "25";
+        document.getElementById('session-length').innerHTML = "25";
 
         document.getElementById('decrement-session').click();
 
-        expect(sessionLengthElement.innerHTML).toEqual('24');
+        expect(document.getElementById('session-length').innerHTML).toEqual('24');
 
         document.getElementById('decrement-session').click();
 
-        expect(sessionLengthElement.innerHTML).toEqual('23');
+        expect(document.getElementById('session-length').innerHTML).toEqual('23');
     });
 
     it('should update clock time when session length is incremented by 1', function () {
