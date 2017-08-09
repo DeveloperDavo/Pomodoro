@@ -1,6 +1,8 @@
 'use strict';
 
 function Application() {
+    var SESSION_MODE = "SESSION";
+
     var INITIAL_SESSION_LENGTH = 25;
     var INITIAL_BREAK_LENGTH = 5;
 
@@ -65,6 +67,7 @@ function Application() {
     this.init = function () {
 
         $CLOCK_TIME.text(INITIAL_SESSION_LENGTH);
+        $("#clock-mode").text(SESSION_MODE);
         $SESSION_LENGTH.text(INITIAL_SESSION_LENGTH);
         $BREAK_LENGTH.text(INITIAL_BREAK_LENGTH);
 

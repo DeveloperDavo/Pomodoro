@@ -13,6 +13,7 @@ describe("application", function () {
             '<span id="session-length"></span>' +
             '<button id="increment-session" value="increment">+</button>' +
             '<div id="clock">' +
+            '<h3 id="clock-mode"></h3>' +
             '<h3 id="clock-time"></h3>' +
             '</div>'
         );
@@ -165,6 +166,11 @@ describe("application", function () {
         expect(document.getElementById('clock-time').children[0].innerHTML).toEqual("05:00");
     });
 
+    it('should display session mode upon initialisation', function () {
+        application.init();
+
+        expect(document.getElementById('clock-mode').innerHTML).toEqual("SESSION");
+    });
 });
 
 function fixture(html) {
