@@ -12,7 +12,9 @@ describe("application", function () {
             '<button id="decrement-session" value="decrement">&minus;</button>' +
             '<span id="session-length"></span>' +
             '<button id="increment-session" value="increment">+</button>' +
-            '<h3 id="clock-time"></h3>'
+            '<div id="clock">' +
+            '<h3 id="clock-time"></h3>' +
+            '</div>'
         );
         document.body.appendChild(container);
         application = new Application(document);
@@ -129,6 +131,15 @@ describe("application", function () {
 
         expect(document.getElementById('clock-time').innerHTML).toEqual('25');
     });
+
+    it('should start countdown at 25:00 when clicking the clock', function () {
+        application.init();
+
+        document.getElementById('clock').click();
+
+        expect(document.getElementById('clock-time').children[0].innerHTML).toEqual("25:00");
+    });
+
 });
 
 function fixture(html) {

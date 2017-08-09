@@ -23,6 +23,18 @@ function Application() {
         })
     }
 
+    function startCountdownOnClick() {
+        $('#clock').click(function () {
+            $CLOCK.countdown({
+                until: 25 * 60,
+                compact: true,
+                format: 'MS',
+                description: ''
+            });
+        });
+    }
+
+
     this.init = function () {
 
         $CLOCK.text(INITIAL_SESSION_TIME);
@@ -33,5 +45,7 @@ function Application() {
 
         updateLengthOnClick($("#increment-session"), $SESSION_LENGTH);
         updateLengthOnClick($("#decrement-session"), $SESSION_LENGTH);
+
+        startCountdownOnClick();
     };
 }

@@ -6,7 +6,9 @@ module.exports = function (grunt) {
         options: {
           specs: ['spec/**/*Spec.js'],
           vendor: [
-              'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'
+              'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js',
+              'js/jquery.plugin.js',
+              'js/jquery.countdown.js'
           ]
         }
       }
