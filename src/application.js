@@ -7,8 +7,14 @@ function Application() {
     var INITIAL_SESSION_LENGTH = 25;
     var INITIAL_BREAK_LENGTH = 5;
 
+    var $INCREMENT_SESSION = $("#increment-session");
+    var $DECREMENT_SESSION = $("#decrement-session");
+    var $INCREMENT_BREAK = $("#increment-break");
+    var $DECREMENT_BREAK = $("#decrement-break");
+
     var $SESSION_LENGTH = $("#session-length");
     var $BREAK_LENGTH = $("#break-length");
+
     var $CLOCK_TIME = $("#clock-time");
 
     var sessionLength = INITIAL_SESSION_LENGTH;
@@ -43,10 +49,10 @@ function Application() {
             format: 'MS',
             description: ''
         });
-        $("#increment-session").prop('disabled', true);
-        $("#decrement-session").prop('disabled', true);
-        $("#increment-break").prop('disabled', true);
-        $("#decrement-break").prop('disabled', true);
+        $INCREMENT_SESSION.prop('disabled', true);
+        $DECREMENT_SESSION.prop('disabled', true);
+        $INCREMENT_BREAK.prop('disabled', true);
+        $DECREMENT_BREAK.prop('disabled', true);
     };
 
     function startSessionCountdownOnClick() {
@@ -76,11 +82,11 @@ function Application() {
         $SESSION_LENGTH.text(INITIAL_SESSION_LENGTH);
         $BREAK_LENGTH.text(INITIAL_BREAK_LENGTH);
 
-        updateLengthOnClick($("#increment-session"), $SESSION_LENGTH);
-        updateLengthOnClick($("#decrement-session"), $SESSION_LENGTH);
+        updateLengthOnClick($INCREMENT_SESSION, $SESSION_LENGTH);
+        updateLengthOnClick($DECREMENT_SESSION, $SESSION_LENGTH);
 
-        updateLengthOnClick($("#decrement-break"), $BREAK_LENGTH);
-        updateLengthOnClick($("#increment-break"), $BREAK_LENGTH);
+        updateLengthOnClick($DECREMENT_BREAK, $BREAK_LENGTH);
+        updateLengthOnClick($INCREMENT_BREAK, $BREAK_LENGTH);
 
         startSessionCountdownOnClick();
     };
