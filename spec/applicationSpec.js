@@ -21,6 +21,11 @@ describe("application", function () {
         document.body.removeChild(container);
     });
 
+    it('should display an initial session length of 25', function () {
+        application.init();
+
+        expect(document.getElementById('session-length').innerHTML).toEqual('25');
+    });
 
     it('should increment session length by 1', function () {
         application.init();
