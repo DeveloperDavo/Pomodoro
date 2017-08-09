@@ -2,9 +2,11 @@
 
 function Application() {
     var INITIAL_SESSION_LENGTH = 25;
+    var INITIAL_BREAK_LENGTH = 5;
 
     var $SESSION_LENGTH = $("#session-length");
     var $CLOCK = $("#clock-time");
+    var $BREAK_LENGTH = $("#break-length");
 
     var sessionLength = INITIAL_SESSION_LENGTH;
 
@@ -42,6 +44,7 @@ function Application() {
 
         $CLOCK.text(INITIAL_SESSION_LENGTH);
         $SESSION_LENGTH.text(INITIAL_SESSION_LENGTH);
+        $BREAK_LENGTH.text(INITIAL_BREAK_LENGTH);
 
         updateLengthOnClick($("#increment-session"), $SESSION_LENGTH);
         updateLengthOnClick($("#decrement-session"), $SESSION_LENGTH);

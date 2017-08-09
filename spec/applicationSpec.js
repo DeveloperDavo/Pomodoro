@@ -6,6 +6,9 @@ describe("application", function () {
 
     beforeEach(function () {
         container = fixture(
+            '<button id="decrement-break" value="decrement">&minus;</button>' +
+            '<span id="break-length"></span>' +
+            '<button id="increment-break" value="increment">+</button>' +
             '<button id="decrement-session" value="decrement">&minus;</button>' +
             '<span id="session-length"></span>' +
             '<button id="increment-session" value="increment">+</button>' +
@@ -25,6 +28,12 @@ describe("application", function () {
         application.init();
 
         expect(document.getElementById('session-length').innerHTML).toEqual('25');
+    });
+
+    it('should display an initial break length of 5', function () {
+        application.init();
+
+        expect(document.getElementById('break-length').innerHTML).toEqual('5');
     });
 
     it('should increment session length by 1', function () {
@@ -118,6 +127,8 @@ describe("application", function () {
 
         expect(document.getElementById('session-length').innerHTML).toEqual('25');
     });
+
+
 });
 
 function fixture(html) {
