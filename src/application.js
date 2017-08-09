@@ -2,6 +2,7 @@
 
 function Application() {
     var SESSION_MODE = "SESSION";
+    var BREAK_MODE = "BREAK";
 
     var INITIAL_SESSION_LENGTH = 25;
     var INITIAL_BREAK_LENGTH = 5;
@@ -55,6 +56,8 @@ function Application() {
     function startBreakCountdown() {
         // reset clock
         $CLOCK_TIME.removeAttr("class");
+
+        $("#clock-mode").text(BREAK_MODE);
 
         $CLOCK_TIME.countdown({
             until: breakLength * 60,

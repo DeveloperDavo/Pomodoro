@@ -171,6 +171,18 @@ describe("application", function () {
 
         expect(document.getElementById('clock-mode').innerHTML).toEqual("SESSION");
     });
+
+    it('should display break mode when session is over', function () {
+        application.init();
+
+        document.getElementById('session-length').innerHTML = "1";
+        document.getElementById('decrement-session').click();
+
+        document.getElementById('clock').click();
+
+        expect(document.getElementById('clock-mode').innerHTML).toEqual("BREAK");
+    });
+
 });
 
 function fixture(html) {
