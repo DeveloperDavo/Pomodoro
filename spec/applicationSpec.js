@@ -6,6 +6,7 @@ describe("application", function () {
 
     beforeEach(function () {
         container = fixture(
+            '<div class="container">' +
             '<button id="decrement-break" value="decrement">&minus;</button>' +
             '<span id="break-length"></span>' +
             '<button id="increment-break" value="increment">+</button>' +
@@ -15,6 +16,7 @@ describe("application", function () {
             '<div id="clock">' +
             '<h3 id="clock-mode"></h3>' +
             '<h3 id="clock-time"></h3>' +
+            '</div>' +
             '</div>'
         );
         document.body.appendChild(container);
