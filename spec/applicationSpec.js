@@ -171,7 +171,7 @@ describe("application", function () {
     it('should display session mode upon initialisation', function () {
         application.init();
 
-        expect(document.getElementById('clock-mode').innerHTML).toEqual("SESSION");
+        expect(document.getElementById('clock-mode').innerHTML).toEqual("Session");
     });
 
     it('should display break mode when session is over', function () {
@@ -182,7 +182,7 @@ describe("application", function () {
 
         document.getElementById('clock').click();
 
-        expect(document.getElementById('clock-mode').innerHTML).toEqual("BREAK");
+        expect(document.getElementById('clock-mode').innerHTML).toEqual("Break");
     });
 
     it('should not update break length when incrementing after the countdown has started', function () {

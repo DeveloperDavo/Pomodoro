@@ -1,8 +1,8 @@
 'use strict';
 
 function Application() {
-    var SESSION_MODE = "SESSION";
-    var BREAK_MODE = "BREAK";
+    var SESSION_MODE = "Session";
+    var BREAK_MODE = "Break";
 
     var INITIAL_SESSION_LENGTH = 25;
     var INITIAL_BREAK_LENGTH = 5;
