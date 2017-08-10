@@ -42,13 +42,19 @@ function Application() {
     }
 
     var startCountdown = function (length) {
+        var fractionOfTimeElapsed = 0;
+        var lengthInSeconds = length * 60;
         $CLOCK_TIME.countdown({
-            until: length * 60,
+            until: lengthInSeconds,
             onExpiry: startBreakCountdown,
             alwaysExpire: true,
             compact: true,
             format: 'MS',
-            description: ''
+            description: '',
+            onTick: function () {
+                fractionOfTimeElapsed += 1 / lengthInSeconds;
+                $('#clock').css('background', 'linear-gradient(to top, #99CC00 ' + fractionOfTimeElapsed * 100 + '%, #333333 0%) bottom')
+            }
         });
     };
 
