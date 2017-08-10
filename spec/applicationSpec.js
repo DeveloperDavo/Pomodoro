@@ -212,6 +212,14 @@ describe("application", function () {
         expect(document.getElementById('break-length').innerHTML).toEqual('5');
     });
 
+    it('should start countdown at 25:00 when clicking start', function () {
+        application.init();
+
+        document.getElementById('start-button').click();
+
+        expect(document.getElementById('clock-time').children[0].innerHTML).toEqual("25:00");
+    });
+
 });
 
 function fixture(html) {
