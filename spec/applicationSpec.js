@@ -99,10 +99,10 @@ describe("application", function () {
         expect(document.getElementById('clock-time').innerHTML).toEqual('25');
     });
 
-    it('should start countdown at 25:00 when clicking the clock', function () {
+    it('should start countdown at 25:00 when clicking start', function () {
         application.init();
 
-        document.getElementById('clock').click();
+        document.getElementById('start-button').click();
 
         expect(document.getElementById('clock-time').children[0].innerHTML).toEqual("25:00");
     });
@@ -111,14 +111,14 @@ describe("application", function () {
         application.init();
         document.getElementById('increment-session').click();
 
-        document.getElementById('clock').click();
+        document.getElementById('start-button').click();
 
         expect(document.getElementById('clock-time').children[0].innerHTML).toEqual("26:00");
     });
 
     it('should not update session length when incrementing after the countdown has started', function () {
         application.init();
-        document.getElementById('clock').click();
+        document.getElementById('start-button').click();
 
         document.getElementById('increment-session').click();
 
@@ -127,7 +127,7 @@ describe("application", function () {
 
     it('should not update session length when decrementing after the countdown has started', function () {
         application.init();
-        document.getElementById('clock').click();
+        document.getElementById('start-button').click();
 
         document.getElementById('decrement-session').click();
 
@@ -172,7 +172,7 @@ describe("application", function () {
         document.getElementById('session-length').innerHTML = "1";
         document.getElementById('decrement-session').click();
 
-        document.getElementById('clock').click();
+        document.getElementById('start-button').click();
 
         expect(document.getElementById('clock-time').children[0].innerHTML).toEqual("05:00");
     });
@@ -189,14 +189,14 @@ describe("application", function () {
         document.getElementById('session-length').innerHTML = "1";
         document.getElementById('decrement-session').click();
 
-        document.getElementById('clock').click();
+        document.getElementById('start-button').click();
 
         expect(document.getElementById('clock-mode').innerHTML).toEqual("Break");
     });
 
     it('should not update break length when incrementing after the countdown has started', function () {
         application.init();
-        document.getElementById('clock').click();
+        document.getElementById('start-button').click();
 
         document.getElementById('increment-break').click();
 
@@ -205,19 +205,11 @@ describe("application", function () {
 
     it('should not update break length when decrementing after the countdown has started', function () {
         application.init();
-        document.getElementById('clock').click();
+        document.getElementById('start-button').click();
 
         document.getElementById('decrement-break').click();
 
         expect(document.getElementById('break-length').innerHTML).toEqual('5');
-    });
-
-    it('should start countdown at 25:00 when clicking start', function () {
-        application.init();
-
-        document.getElementById('start-button').click();
-
-        expect(document.getElementById('clock-time').children[0].innerHTML).toEqual("25:00");
     });
 
 });

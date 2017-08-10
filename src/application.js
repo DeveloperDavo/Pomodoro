@@ -60,14 +60,6 @@ function Application() {
             $INCREMENT_BREAK.prop('disabled', true);
             $DECREMENT_BREAK.prop('disabled', true);
         });
-
-        $('#clock').click(function () {
-            startCountdown(sessionLength);
-            $INCREMENT_SESSION.prop('disabled', true);
-            $DECREMENT_SESSION.prop('disabled', true);
-            $INCREMENT_BREAK.prop('disabled', true);
-            $DECREMENT_BREAK.prop('disabled', true);
-        });
     }
 
     function startBreakCountdown() {
