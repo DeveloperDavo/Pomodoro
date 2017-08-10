@@ -50,6 +50,7 @@ body {
     text-align: center;
     border-radius: 50%;
     border: 2px solid #99CC00;
+    background: linear-gradient(to top, #99CC00 60%, #333333 0%) bottom;
 }
 
 #clock-time {
