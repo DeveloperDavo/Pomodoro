@@ -64,7 +64,7 @@ function Application() {
 
     function startBreakCountdown() {
         // reset clock
-        $CLOCK_TIME.removeAttr("class");
+        $CLOCK_TIME.removeClass("is-countdown");
 
         $CLOCK_MODE.text(BREAK_MODE);
 
