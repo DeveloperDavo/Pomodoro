@@ -23,6 +23,9 @@ describe("application", function () {
             '<h3 id="clock-mode" class="clock-text"></h3>' +
             '<h3 id="clock-time" class="clock-text"></h3>' +
             '</div>' +
+            '<div id="start">' +
+            '<button id="start-button" class="btn">START</button>' +
+            '</div>' +
             '</div>'
         );
         document.body.appendChild(container);
@@ -208,7 +211,6 @@ describe("application", function () {
 
         expect(document.getElementById('break-length').innerHTML).toEqual('5');
     });
-
 
 });
 
