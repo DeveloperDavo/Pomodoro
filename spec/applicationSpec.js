@@ -7,12 +7,18 @@ describe("application", function () {
     beforeEach(function () {
         container = fixture(
             '<div class="container">' +
-            '<button id="decrement-break" value="decrement">&minus;</button>' +
+            '<div class="length-setter" id="break-length-setter"> ' +
+            '<h5>BREAK LENGTH</h5>' +
+            '<button id="decrement-break" value="decrement" class="crement-button">&minus;</button>' +
             '<span id="break-length"></span>' +
-            '<button id="increment-break" value="increment">+</button>' +
-            '<button id="decrement-session" value="decrement">&minus;</button>' +
+            '<button id="increment-break" value="increment" class="crement-button">+</button>' +
+            '</div>' +
+            '<div class="length-setter" id="session-length-setter">' +
+            '<h5>SESSION LENGTH</h5>' +
+            '<button id="decrement-session" value="decrement" class="crement-button">&minus;</button>' +
             '<span id="session-length"></span>' +
-            '<button id="increment-session" value="increment">+</button>' +
+            '<button id="increment-session" value="increment" class="crement-button">+</button>' +
+            '</div>' +
             '<div id="clock">' +
             '<h3 id="clock-mode" class="clock-text"></h3>' +
             '<h3 id="clock-time" class="clock-text"></h3>' +
