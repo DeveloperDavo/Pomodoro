@@ -10,12 +10,11 @@ body {
 
 .length-setter {
     display: inline-block;
-    text-align: center;
-    margin: 10% 200px 0;
 }
- .length-setter h5 {
-     font-size: 0.8em;
- }
+
+.length-setter h5 {
+    font-size: 0.8em;
+}
 
 .crement-button {
     background-color: #333333;
@@ -25,6 +24,18 @@ body {
 
 .clock-text {
     font-size: 4em;
+}
+
+#length-setters {
+    text-align: center;
+    margin-top: 10%;
+}
+
+#break-length-setter {
+    margin-right: 10%;
+}
+
+#session-length-setter {
 }
 
 #break-length, #session-length {
@@ -44,4 +55,3 @@ body {
 #clock-time {
     margin-top: 80px;
 }
-
