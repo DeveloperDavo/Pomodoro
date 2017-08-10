@@ -3,7 +3,9 @@
 }
 
 body {
-    background-color: #818181;
+    font-family: Arial, serif;
+    color: #fff;
+    background-color: #333333;
 }
 
 .length-setter {
@@ -12,15 +14,21 @@ body {
     margin: 10% 200px 0;
 }
 
+.clock-text {
+    font-size: 4em;
+}
+
 #clock {
     margin: 20px auto;
-    width: 200px;
-    height: 200px;
+    padding: 40px;
+    width: 300px;
+    height: 300px;
     text-align: center;
-    border: solid;
-    border-radius: 100%;
+    border-radius: 50%;
+    border: 2px solid #99CC00;
 }
 
 #clock-time {
-    margin-top: 100px;
+    margin-top: 80px;
 }
+

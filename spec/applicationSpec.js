@@ -14,8 +14,8 @@ describe("application", function () {
             '<span id="session-length"></span>' +
             '<button id="increment-session" value="increment">+</button>' +
             '<div id="clock">' +
-            '<h3 id="clock-mode"></h3>' +
-            '<h3 id="clock-time"></h3>' +
+            '<h3 id="clock-mode" class="clock-text"></h3>' +
+            '<h3 id="clock-time" class="clock-text"></h3>' +
             '</div>' +
             '</div>'
         );
