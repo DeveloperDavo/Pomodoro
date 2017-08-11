@@ -61,11 +61,11 @@ function Application() {
         })
     }
 
-    function fillClock(colorHex, percentage) {
-        $('#clock').css('background', 'linear-gradient(to top, ' + colorHex + ' ' + percentage + '%, #333333 0%) bottom')
+    function fillClock(color, percentage) {
+        $('#clock').css('background', 'linear-gradient(to top, ' + color + ' ' + percentage + '%, #333333 0%) bottom')
     }
 
-    function startCountdown(lengthInMinutes) {
+    function startCountdown(color, lengthInMinutes) {
         // var lengthInSeconds = lengthInMinutes * 60;
         var lengthInSeconds = breakLengthInMinutes;
         var secondsLeft = lengthInSeconds;
@@ -78,14 +78,14 @@ function Application() {
                 startBreakCountdown();
                 clearInterval(countdown);
                 $CLOCK_TIME.text(breakLengthInMinutes.toString().formatTime());
-                fillClock("#99CC00", 0);
+                fillClock(color, 0);
                 return;
             }
 
             timeElapsedInSeconds++;
             var percentageOfTimeElapsed = timeElapsedInSeconds / lengthInSeconds * 100;
 
-            fillClock("#99CC00", percentageOfTimeElapsed);
+            fillClock(color, percentageOfTimeElapsed);
 
             $CLOCK_TIME.text(secondsLeft.toString().formatTime());
         }, 1000);
@@ -93,13 +93,13 @@ function Application() {
 
     function startBreakCountdown() {
         $CLOCK_MODE.text(BREAK_MODE);
-        startCountdown(breakLengthInMinutes)
+        startCountdown("rgb(255, 68, 68)", breakLengthInMinutes);
     }
 
 
     function startCountdownOnClick() {
         $('#start-button').click(function () {
-            startCountdown(sessionLengthInMinutes);
+            startCountdown("#99CC00", sessionLengthInMinutes);
             $INCREMENT_SESSION.prop('disabled', true);
             $DECREMENT_SESSION.prop('disabled', true);
             $INCREMENT_BREAK.prop('disabled', true);
