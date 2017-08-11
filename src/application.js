@@ -4,6 +4,7 @@ function Application() {
     var SESSION_MODE = "Session";
 
     var INITIAL_SESSION_LENGTH_IN_MINUTES = 25;
+    var INITIAL_SESSION_LENGTH_IN_SECONDS = INITIAL_SESSION_LENGTH_IN_MINUTES * 60;
     var INITIAL_BREAK_LENGTH = 5;
 
     var $INCREMENT_SESSION = $("#increment-session");
@@ -29,9 +30,8 @@ function Application() {
         })
     }
 
-    this.init = function () {
-
-        String.prototype.toHHMMSS = function () {
+    function addTimeFormatterFunctionToString() {
+        String.prototype.formatTime = function () {
             var totalSeconds = parseInt(this, 10);
             var hours = Math.floor(totalSeconds / 3600);
             var minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
@@ -45,11 +45,16 @@ function Application() {
             }
             return minutes + ':' + seconds;
         };
+    }
+
+    this.init = function () {
+
+        addTimeFormatterFunctionToString();
 
         $SESSION_LENGTH.text(INITIAL_SESSION_LENGTH_IN_MINUTES);
         $BREAK_LENGTH.text(INITIAL_BREAK_LENGTH);
 
-        $CLOCK_TIME.text((INITIAL_SESSION_LENGTH_IN_MINUTES * 60).toString().toHHMMSS());
+        $CLOCK_TIME.text(INITIAL_SESSION_LENGTH_IN_SECONDS.toString().formatTime());
         $CLOCK_MODE.text(SESSION_MODE);
 
         updateLengthOnClick($INCREMENT_SESSION, $SESSION_LENGTH);
