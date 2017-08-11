@@ -58,13 +58,19 @@ function Application() {
         })
     }
 
-    function startCountdownOnClick() {
+    function startCountdown() {
         var count = sessionLengthInMinutes * 60;
 
         setInterval(function () {
             count--;
             $CLOCK_TIME.text(count.toString().formatTime())
         }, 1000);
+    }
+
+    function startCountdownOnClick() {
+        $('#start-button').click(function () {
+            startCountdown();
+        });
     }
 
     this.init = function () {
