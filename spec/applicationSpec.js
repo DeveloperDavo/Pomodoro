@@ -112,6 +112,12 @@ describe("application", function () {
         expect(document.getElementById('clock-mode').innerHTML).toEqual("Session");
     });
 
+    it('should display a clock time of 25:00 upon initialisation', function () {
+        application.init();
+
+        expect(document.getElementById('clock-time').innerHTML).toEqual('25:00');
+    });
+
 });
 
 function fixture(html) {

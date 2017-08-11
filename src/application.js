@@ -3,7 +3,7 @@
 function Application() {
     var SESSION_MODE = "Session";
 
-    var INITIAL_SESSION_LENGTH = 25;
+    var INITIAL_SESSION_LENGTH_IN_MINUTES = 25;
     var INITIAL_BREAK_LENGTH = 5;
 
     var $INCREMENT_SESSION = $("#increment-session");
@@ -31,10 +31,25 @@ function Application() {
 
     this.init = function () {
 
-        $SESSION_LENGTH.text(INITIAL_SESSION_LENGTH);
+        String.prototype.toHHMMSS = function () {
+            var totalSeconds = parseInt(this, 10);
+            var hours = Math.floor(totalSeconds / 3600);
+            var minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
+            var seconds = totalSeconds - (hours * 3600) - (minutes * 60);
+
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            return minutes + ':' + seconds;
+        };
+
+        $SESSION_LENGTH.text(INITIAL_SESSION_LENGTH_IN_MINUTES);
         $BREAK_LENGTH.text(INITIAL_BREAK_LENGTH);
 
-        $CLOCK_TIME.text(INITIAL_SESSION_LENGTH);
+        $CLOCK_TIME.text((INITIAL_SESSION_LENGTH_IN_MINUTES * 60).toString().toHHMMSS());
         $CLOCK_MODE.text(SESSION_MODE);
 
         updateLengthOnClick($INCREMENT_SESSION, $SESSION_LENGTH);

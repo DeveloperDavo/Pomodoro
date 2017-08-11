@@ -34,12 +34,6 @@
         expect(document.getElementById('clock-time').innerHTML).toEqual('27');
     });
 
-    it('should display a clock time of 25 upon initialisation', function () {
-        application.init();
-
-        expect(document.getElementById('clock-time').innerHTML).toEqual('25');
-    });
-
     it('should not update session length when incrementing after the countdown has started', function () {
         application.init();
         document.getElementById('start-button').click();
