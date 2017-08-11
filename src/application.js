@@ -2,6 +2,7 @@
 
 function Application() {
     var SESSION_MODE = "Session";
+    var BREAK_MODE = "Break";
 
     var INITIAL_SESSION_LENGTH_IN_MINUTES = 25;
     var INITIAL_SESSION_LENGTH_IN_SECONDS = INITIAL_SESSION_LENGTH_IN_MINUTES * 60;
@@ -58,18 +59,29 @@ function Application() {
         })
     }
 
-    function startCountdown() {
-        var count = sessionLengthInMinutes * 60;
+    function startSessionCountdown() {
+        // var count = sessionLengthInMinutes * 60;
+        var count = 2;
 
-        setInterval(function () {
+        var countdown = setInterval(function () {
             count--;
-            $CLOCK_TIME.text(count.toString().formatTime())
+            if (count < 0) {
+                startBreakCountdown();
+                clearInterval(countdown);
+            }
+
+            $CLOCK_TIME.text(count.toString().formatTime());
         }, 1000);
     }
 
+    function startBreakCountdown() {
+        $CLOCK_MODE.text(BREAK_MODE);
+    }
+
+
     function startCountdownOnClick() {
         $('#start-button').click(function () {
-            startCountdown();
+            startSessionCountdown();
             $INCREMENT_SESSION.prop('disabled', true);
             $DECREMENT_SESSION.prop('disabled', true);
             $INCREMENT_BREAK.prop('disabled', true);
