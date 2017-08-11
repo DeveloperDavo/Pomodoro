@@ -3,6 +3,7 @@
 function Application() {
     var SESSION_MODE = "Session";
     var BREAK_MODE = "Break";
+    var START = "START";
 
     var INITIAL_SESSION_LENGTH_IN_MINUTES = 25;
     var INITIAL_BREAK_LENGTH_IN_MINUTES = 5;
@@ -18,7 +19,7 @@ function Application() {
     var $CLOCK_MODE = $("#clock-mode");
     var $CLOCK_TIME = $("#clock-time");
 
-    var $START = $('#start-button');
+    var $START_PAUSE = $('#start-pause-button');
 
     var INCREMENT_BUTTON_VALUE = "increment";
 
@@ -99,13 +100,13 @@ function Application() {
 
 
     function startCountdownOnClick() {
-        $START.click(function () {
+        $START_PAUSE.click(function () {
             startCountdown("#99CC00", sessionLengthInMinutes);
             $INCREMENT_SESSION.prop('disabled', true);
             $DECREMENT_SESSION.prop('disabled', true);
             $INCREMENT_BREAK.prop('disabled', true);
             $DECREMENT_BREAK.prop('disabled', true);
-            $START.prop('disabled', true);
+            $START_PAUSE.prop('disabled', true);
         });
     }
 
@@ -119,6 +120,8 @@ function Application() {
         $CLOCK_TIME.text((INITIAL_SESSION_LENGTH_IN_MINUTES * 60).toString().formatTime());
         $CLOCK_MODE.text(SESSION_MODE);
 
+        $START_PAUSE.text(START);
+
         updateLengthOnClick($INCREMENT_SESSION, $SESSION_LENGTH);
         updateLengthOnClick($DECREMENT_SESSION, $SESSION_LENGTH);
 
@@ -126,7 +129,6 @@ function Application() {
         updateLengthOnClick($INCREMENT_BREAK, $BREAK_LENGTH);
 
         startCountdownOnClick();
-
     };
 
 }

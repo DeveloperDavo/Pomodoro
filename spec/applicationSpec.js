@@ -23,8 +23,8 @@ describe("application", function () {
             '<h3 id="clock-mode" class="clock-text"></h3>' +
             '<h3 id="clock-time" class="clock-text"></h3>' +
             '</div>' +
-            '<div id="start">' +
-            '<button id="start-button" class="btn">START</button>' +
+            '<div id="start-pause">' +
+            '<button id="start-pause-button" class="btn"></button>' +
             '</div>' +
             '</div>'
         );
@@ -139,7 +139,7 @@ describe("application", function () {
 
     it('should not update session length when incrementing after the countdown has started', function () {
         application.init();
-        document.getElementById('start-button').click();
+        document.getElementById('start-pause-button').click();
 
         document.getElementById('increment-session').click();
 
@@ -148,7 +148,7 @@ describe("application", function () {
 
     it('should not update session length when decrementing after the countdown has started', function () {
         application.init();
-        document.getElementById('start-button').click();
+        document.getElementById('start-pause-button').click();
 
         document.getElementById('decrement-session').click();
 
@@ -157,7 +157,7 @@ describe("application", function () {
 
     it('should not update break length when incrementing after the countdown has started', function () {
         application.init();
-        document.getElementById('start-button').click();
+        document.getElementById('start-pause-button').click();
 
         document.getElementById('increment-break').click();
 
@@ -166,11 +166,17 @@ describe("application", function () {
 
     it('should not update break length when decrementing after the countdown has started', function () {
         application.init();
-        document.getElementById('start-button').click();
+        document.getElementById('start-pause-button').click();
 
         document.getElementById('decrement-break').click();
 
         expect(document.getElementById('break-length').innerHTML).toEqual('5');
+    });
+
+    it('should display start button upon initialisation', function () {
+        application.init();
+
+        expect(document.getElementById('start-pause-button').innerHTML).toEqual('START');
     });
 
 });

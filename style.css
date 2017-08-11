@@ -63,12 +63,12 @@ body {
     margin-top: 80px;
 }
 
-#start {
+#start-pause {
     margin-bottom: 10%;
     text-align: center;
 }
 
-#start-button {
+#start-pause-button {
     background-color: #99CC00;
     color: white;
 }
