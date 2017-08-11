@@ -179,6 +179,14 @@ describe("application", function () {
         expect(document.getElementById('start-pause-button').innerHTML).toEqual('START');
     });
 
+    it('should display pause button when countdown starts', function () {
+        application.init();
+
+        document.getElementById('start-pause-button').click();
+
+        expect(document.getElementById('start-pause-button').innerHTML).toEqual('PAUSE');
+    });
+
 });
 
 function fixture(html) {

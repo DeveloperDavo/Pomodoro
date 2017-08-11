@@ -4,6 +4,7 @@ function Application() {
     var SESSION_MODE = "Session";
     var BREAK_MODE = "Break";
     var START = "START";
+    var PAUSE = "PAUSE";
 
     var INITIAL_SESSION_LENGTH_IN_MINUTES = 25;
     var INITIAL_BREAK_LENGTH_IN_MINUTES = 5;
@@ -107,6 +108,7 @@ function Application() {
             $INCREMENT_BREAK.prop('disabled', true);
             $DECREMENT_BREAK.prop('disabled', true);
             $START_PAUSE.prop('disabled', true);
+            $START_PAUSE.text(PAUSE);
         });
     }
 
