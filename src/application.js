@@ -42,8 +42,10 @@ function Application() {
     }
 
     var startCountdown = function (length) {
-        var fractionOfTimeElapsed = 0;
         var lengthInSeconds = length * 60;
+        // var lengthInSeconds = length;
+        var timeElapsedInSeconds = -1;
+        var percentageOfTimeElapsed = 0;
         $CLOCK_TIME.countdown({
             until: lengthInSeconds,
             onExpiry: startBreakCountdown,
@@ -52,8 +54,9 @@ function Application() {
             format: 'MS',
             description: '',
             onTick: function () {
-                fractionOfTimeElapsed += 1 / lengthInSeconds;
-                $('#clock').css('background', 'linear-gradient(to top, #99CC00 ' + fractionOfTimeElapsed * 100 + '%, #333333 0%) bottom')
+                timeElapsedInSeconds++;
+                percentageOfTimeElapsed = timeElapsedInSeconds / lengthInSeconds * 100;
+                $('#clock').css('background', 'linear-gradient(to top, #99CC00 ' + percentageOfTimeElapsed + '%, #333333 0%) bottom')
             }
         });
     };
