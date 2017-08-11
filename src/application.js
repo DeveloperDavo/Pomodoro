@@ -20,23 +20,7 @@ function Application() {
 
     var INCREMENT_BUTTON_VALUE = "increment";
 
-    function updateClockTime(lengthElement, newLength) {
-        if (lengthElement === $SESSION_LENGTH) {
-            $CLOCK_TIME.text((newLength * 60).toString().formatTime());
-        }
-    }
-
-    function updateLengthOnClick(crementButton, lengthElement) {
-        crementButton.click(function () {
-            var length = Number(lengthElement.text());
-            var newLength = crementButton.val() === INCREMENT_BUTTON_VALUE ? ++length : --length;
-
-            lengthElement.text(newLength);
-
-            updateClockTime(lengthElement, newLength);
-
-        })
-    }
+    var sessionLengthInMinutes = INITIAL_SESSION_LENGTH_IN_MINUTES;
 
     function addTimeFormatterFunctionToString() {
         String.prototype.formatTime = function () {
@@ -55,6 +39,34 @@ function Application() {
         };
     }
 
+    function updateClockTime(lengthElement, newLength) {
+        if (lengthElement === $SESSION_LENGTH) {
+            $CLOCK_TIME.text((newLength * 60).toString().formatTime());
+            sessionLengthInMinutes = newLength;
+        }
+    }
+
+    function updateLengthOnClick(crementButton, lengthElement) {
+        crementButton.click(function () {
+            var length = Number(lengthElement.text());
+            var newLength = crementButton.val() === INCREMENT_BUTTON_VALUE ? ++length : --length;
+
+            lengthElement.text(newLength);
+
+            updateClockTime(lengthElement, newLength);
+
+        })
+    }
+
+    function startCountdownOnClick() {
+        var count = sessionLengthInMinutes * 60;
+
+        setInterval(function () {
+            count--;
+            $CLOCK_TIME.text(count.toString().formatTime())
+        }, 1000);
+    }
+
     this.init = function () {
 
         addTimeFormatterFunctionToString();
@@ -70,6 +82,8 @@ function Application() {
 
         updateLengthOnClick($DECREMENT_BREAK, $BREAK_LENGTH);
         updateLengthOnClick($INCREMENT_BREAK, $BREAK_LENGTH);
+
+        startCountdownOnClick();
 
     };
 
