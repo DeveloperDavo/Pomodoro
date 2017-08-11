@@ -62,19 +62,27 @@ function Application() {
     }
 
     function startCountdown(lengthInMinutes) {
-        var count = lengthInMinutes * 60;
-        // var count = breakLengthInMinutes;
+        // var lengthInSeconds = lengthInMinutes * 60;
+        var lengthInSeconds = breakLengthInMinutes;
+        var secondsLeft = lengthInSeconds;
+        var timeElapsedInSeconds = 0;
 
         var countdown = setInterval(function () {
-            count--;
-            if (count === 0) {
+            secondsLeft--;
+
+            if (secondsLeft === 0) {
                 startBreakCountdown();
                 clearInterval(countdown);
                 $CLOCK_TIME.text(breakLengthInMinutes.toString().formatTime());
+                $('#clock').css('background', 'linear-gradient(to top, #99CC00 ' + 0 + '%, #333333 0%) bottom')
                 return;
             }
 
-            $CLOCK_TIME.text(count.toString().formatTime());
+            timeElapsedInSeconds++;
+            var percentageOfTimeElapsed = timeElapsedInSeconds / lengthInSeconds * 100;
+            $('#clock').css('background', 'linear-gradient(to top, #99CC00 ' + percentageOfTimeElapsed + '%, #333333 0%) bottom')
+
+            $CLOCK_TIME.text(secondsLeft.toString().formatTime());
         }, 1000);
     }
 
