@@ -27,6 +27,8 @@ function Application() {
     var sessionLengthInMinutes = INITIAL_SESSION_LENGTH_IN_MINUTES;
     var breakLengthInMinutes = INITIAL_BREAK_LENGTH_IN_MINUTES;
 
+    var isCountdownRunning = false;
+
     function addTimeFormatterFunctionToString() {
         String.prototype.formatTime = function () {
             var totalSeconds = parseInt(this, 10);
@@ -102,13 +104,21 @@ function Application() {
 
     function startCountdownOnClick() {
         $START_PAUSE.click(function () {
-            startCountdown("#99CC00", sessionLengthInMinutes);
-            $INCREMENT_SESSION.prop('disabled', true);
-            $DECREMENT_SESSION.prop('disabled', true);
-            $INCREMENT_BREAK.prop('disabled', true);
-            $DECREMENT_BREAK.prop('disabled', true);
-            $START_PAUSE.prop('disabled', true);
-            $START_PAUSE.text(PAUSE);
+            isCountdownRunning = !isCountdownRunning;
+            if (isCountdownRunning) {
+                startCountdown("#99CC00", sessionLengthInMinutes);
+                $INCREMENT_SESSION.prop('disabled', true);
+                $DECREMENT_SESSION.prop('disabled', true);
+                $INCREMENT_BREAK.prop('disabled', true);
+                $DECREMENT_BREAK.prop('disabled', true);
+                $START_PAUSE.text(PAUSE);
+            } else {
+                $INCREMENT_SESSION.prop('disabled', false);
+                $DECREMENT_SESSION.prop('disabled', false);
+                $INCREMENT_BREAK.prop('disabled', false);
+                $DECREMENT_BREAK.prop('disabled', false);
+                $START_PAUSE.prop('disabled', true);
+            }
         });
     }
 

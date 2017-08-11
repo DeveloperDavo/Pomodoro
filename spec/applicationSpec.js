@@ -187,6 +187,23 @@ describe("application", function () {
         expect(document.getElementById('start-pause-button').innerHTML).toEqual('PAUSE');
     });
 
+    it('should enable crement buttons after pausing', function () {
+        application.init();
+
+        document.getElementById('session-length').innerHTML = "17";
+
+        // start
+        document.getElementById('start-pause-button').click();
+
+        // pause
+        document.getElementById('start-pause-button').click();
+
+        document.getElementById('decrement-session').click();
+
+        expect(document.getElementById('session-length').innerHTML).toEqual('16');
+    });
+
+
 });
 
 function fixture(html) {
