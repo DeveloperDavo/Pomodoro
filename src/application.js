@@ -66,8 +66,7 @@ function Application() {
     }
 
     function startCountdown(color, lengthInMinutes) {
-        // var lengthInSeconds = lengthInMinutes * 60;
-        var lengthInSeconds = breakLengthInMinutes;
+        var lengthInSeconds = lengthInMinutes * 60;
         var secondsLeft = lengthInSeconds;
         var timeElapsedInSeconds = 0;
 
