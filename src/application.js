@@ -61,6 +61,10 @@ function Application() {
         })
     }
 
+    function fillClock(colorHex, percentage) {
+        $('#clock').css('background', 'linear-gradient(to top, ' + colorHex + ' ' + percentage + '%, #333333 0%) bottom')
+    }
+
     function startCountdown(lengthInMinutes) {
         // var lengthInSeconds = lengthInMinutes * 60;
         var lengthInSeconds = breakLengthInMinutes;
@@ -74,13 +78,14 @@ function Application() {
                 startBreakCountdown();
                 clearInterval(countdown);
                 $CLOCK_TIME.text(breakLengthInMinutes.toString().formatTime());
-                $('#clock').css('background', 'linear-gradient(to top, #99CC00 ' + 0 + '%, #333333 0%) bottom')
+                fillClock("#99CC00", 0);
                 return;
             }
 
             timeElapsedInSeconds++;
             var percentageOfTimeElapsed = timeElapsedInSeconds / lengthInSeconds * 100;
-            $('#clock').css('background', 'linear-gradient(to top, #99CC00 ' + percentageOfTimeElapsed + '%, #333333 0%) bottom')
+
+            fillClock("#99CC00", percentageOfTimeElapsed);
 
             $CLOCK_TIME.text(secondsLeft.toString().formatTime());
         }, 1000);
