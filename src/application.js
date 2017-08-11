@@ -20,12 +20,20 @@ function Application() {
 
     var INCREMENT_BUTTON_VALUE = "increment";
 
+    function updateClockTime(lengthElement, newLength) {
+        if (lengthElement === $SESSION_LENGTH) {
+            $CLOCK_TIME.text((newLength * 60).toString().formatTime());
+        }
+    }
+
     function updateLengthOnClick(crementButton, lengthElement) {
         crementButton.click(function () {
             var length = Number(lengthElement.text());
             var newLength = crementButton.val() === INCREMENT_BUTTON_VALUE ? ++length : --length;
 
             lengthElement.text(newLength);
+
+            updateClockTime(lengthElement, newLength);
 
         })
     }

@@ -118,6 +118,25 @@ describe("application", function () {
         expect(document.getElementById('clock-time').innerHTML).toEqual('25:00');
     });
 
+    it('should update clock time when session length is incremented by 1', function () {
+        application.init();
+
+        document.getElementById('session-length').innerHTML = "25";
+        document.getElementById('increment-session').click();
+
+        expect(document.getElementById('clock-time').innerHTML).toEqual('26:00');
+    });
+
+    it('should update clock time when session length is incremented by 2', function () {
+        application.init();
+
+        document.getElementById('session-length').innerHTML = "25";
+        document.getElementById('increment-session').click();
+        document.getElementById('increment-session').click();
+
+        expect(document.getElementById('clock-time').innerHTML).toEqual('27:00');
+    });
+
 });
 
 function fixture(html) {
