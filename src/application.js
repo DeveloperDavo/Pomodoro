@@ -70,6 +70,10 @@ function Application() {
     function startCountdownOnClick() {
         $('#start-button').click(function () {
             startCountdown();
+            $INCREMENT_SESSION.prop('disabled', true);
+            $DECREMENT_SESSION.prop('disabled', true);
+            $INCREMENT_BREAK.prop('disabled', true);
+            $DECREMENT_BREAK.prop('disabled', true);
         });
     }
 
