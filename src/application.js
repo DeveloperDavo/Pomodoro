@@ -77,6 +77,10 @@ function Application() {
         var timeElapsedInSeconds = 0;
 
         var countdown = setInterval(function () {
+            if (!isCountdownRunning) {
+                clearInterval(countdown);
+                return;
+            }
             secondsLeft--;
 
             if (secondsLeft === 0) {
