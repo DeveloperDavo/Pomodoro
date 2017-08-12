@@ -8,8 +8,8 @@ body {
     background-color: #333333;
 }
 
-.btn:hover {
-    color: white;
+button:focus {
+    outline: 0;
 }
 
 #length-setters {
@@ -75,6 +75,9 @@ body {
     margin-bottom: 10%;
     text-align: center;
     display: inline;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 5px 10px;
 }
 
 #start-pause-button {
