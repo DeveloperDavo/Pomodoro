@@ -31,7 +31,6 @@ function Application() {
 
     var INCREMENT_BUTTON_VALUE = "increment";
 
-    var sessionLengthInMinutes = INITIAL_SESSION_LENGTH_IN_MINUTES;
     var sessionSecondsLeft = INITIAL_SESSION_LENGTH_IN_MINUTES * 60;
 
     var isCountdownRunning = false;
@@ -53,14 +52,6 @@ function Application() {
         };
     }
 
-    function updateClockTime(lengthElement, newLength) {
-        if (lengthElement === $SESSION_LENGTH) {
-            $CLOCK_TIME.text((newLength * 60).toString().formatTime());
-            sessionLengthInMinutes = newLength;
-            sessionSecondsLeft = sessionLengthInMinutes * 60;
-        }
-    }
-
     function updateLengthOnClick(crementButton, lengthElement) {
         crementButton.click(function () {
             var length = Number(lengthElement.text());
@@ -68,7 +59,10 @@ function Application() {
 
             lengthElement.text(newLength);
 
-            updateClockTime(lengthElement, newLength);
+            if (lengthElement === $SESSION_LENGTH) {
+                $CLOCK_TIME.text((newLength * 60).toString().formatTime());
+                sessionSecondsLeft = newLength * 60;
+            }
 
         })
     }
@@ -110,7 +104,7 @@ function Application() {
         $RESET.click(function () {
             isCountdownRunning = false;
             toggleCrementButtons(ENABLED);
-            $CLOCK_TIME.text((sessionLengthInMinutes * 60).toString().formatTime());
+            $CLOCK_TIME.text((Number($SESSION_LENGTH.text()) * 60).toString().formatTime());
             $START_PAUSE.text(START);
         });
     }
