@@ -261,6 +261,23 @@ describe("application", function () {
 
     });
 
+    it('should stop countdown upon reset', function (done) {
+        application.init();
+        document.getElementById('session-length').innerHTML = "1";
+        document.getElementById('increment-session').click();
+
+        document.getElementById('start-pause-button').click();
+
+        setTimeout(function () {
+            document.getElementById('reset-button').click();
+            setTimeout(function () {
+                expect(document.getElementById('clock-time').innerHTML).toEqual('02:00');
+                done();
+            }, 1000);
+        }, 1000);
+
+    });
+
 });
 
 function fixture(html) {

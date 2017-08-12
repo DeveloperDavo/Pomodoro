@@ -111,6 +111,7 @@ function Application() {
 
     function resetCountdownOnClick() {
         $RESET.click(function () {
+            isCountdownRunning = false;
             toggleCrementButtons(ENABLED);
             $CLOCK_TIME.text((sessionLengthInMinutes * 60).toString().formatTime());
             $START_PAUSE.text(START);
