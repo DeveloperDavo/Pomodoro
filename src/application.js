@@ -127,7 +127,6 @@ function Application() {
                 toggleCrementButtons(DISABLED);
                 $START_PAUSE.text(PAUSE);
             } else {
-                toggleCrementButtons(ENABLED);
                 $START_PAUSE.text(START);
             }
         });

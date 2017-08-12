@@ -198,22 +198,6 @@ describe("application", function () {
         expect(document.getElementById('start-pause-button').innerHTML).toEqual('START');
     });
 
-    it('should enable crement buttons after pausing', function () {
-        application.init();
-
-        document.getElementById('session-length').innerHTML = "17";
-
-        // start
-        document.getElementById('start-pause-button').click();
-
-        // pause
-        document.getElementById('start-pause-button').click();
-
-        document.getElementById('decrement-session').click();
-
-        expect(document.getElementById('session-length').innerHTML).toEqual('16');
-    });
-
     it('should reset countdown', function () {
         application.init();
         document.getElementById('session-length').innerHTML = "21";
@@ -237,7 +221,6 @@ describe("application", function () {
         expect(document.getElementById('session-length').innerHTML).toEqual('26');
 
     });
-
 
     it('should enable crement buttons after resetting', function () {
         application.init();
