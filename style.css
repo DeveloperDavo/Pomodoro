@@ -8,6 +8,10 @@ body {
     background-color: #333333;
 }
 
+.btn:hover {
+    color: white;
+}
+
 #length-setters {
     text-align: center;
     margin-top: 10%;
@@ -71,17 +75,15 @@ body {
     margin-bottom: 10%;
     text-align: center;
     display: inline;
-    color: white;
 }
 
 #start-pause-button {
     position: absolute;
     background-color: #99CC00;
-    color: white;
 }
 
 #reset-button {
     position: relative;
-    left: 300px;
+    left: 100px;
     background-color: #333333;
 }
