@@ -76,10 +76,6 @@ function Application() {
         })
     }
 
-    function fillClock(color, percentage) {
-        $('#clock').css('background', 'linear-gradient(to top, ' + color + ' ' + percentage + '%, #333333 0%) bottom')
-    }
-
     function startCountdown() {
         var countdown = setInterval(function () {
             if (!isCountdownRunning) {
@@ -115,8 +111,6 @@ function Application() {
 
     function resetCountdownOnClick() {
         $RESET.click(function () {
-            isCountdownRunning = false;
-            fillClock(LIGHT_GREEN, 0);
             toggleCrementButtons(ENABLED);
             $CLOCK_TIME.text((sessionLengthInMinutes * 60).toString().formatTime());
             $START_PAUSE.text(START);
