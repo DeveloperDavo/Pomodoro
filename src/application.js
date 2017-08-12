@@ -109,8 +109,7 @@ function Application() {
         startCountdown("rgb(255, 68, 68)", breakLengthInMinutes);
     }
 
-    // TODO: rename to startOrPause
-    function startCountdownOnClick() {
+    function startOrPauseCountdownOnClick() {
         $START_PAUSE.click(function () {
             isCountdownRunning = !isCountdownRunning;
             if (isCountdownRunning) {
@@ -157,7 +156,7 @@ function Application() {
         updateLengthOnClick($DECREMENT_BREAK, $BREAK_LENGTH);
         updateLengthOnClick($INCREMENT_BREAK, $BREAK_LENGTH);
 
-        startCountdownOnClick();
+        startOrPauseCountdownOnClick();
         resetCountdownOnClick();
     };
 
