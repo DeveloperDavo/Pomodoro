@@ -34,6 +34,7 @@ function Application() {
     var sessionSecondsLeft = INITIAL_SESSION_LENGTH_IN_MINUTES * 60;
 
     var isCountdownRunning = false;
+    var countdown = -1;
 
     function addTimeFormatterFunctionToString() {
         String.prototype.formatTime = function () {
@@ -72,12 +73,7 @@ function Application() {
     }
 
     function startCountdown(color) {
-        var countdown = setInterval(function () {
-            if (!isCountdownRunning) {
-                clearInterval(countdown);
-                return;
-            }
-
+        countdown = setInterval(function () {
             sessionSecondsLeft--;
 
             var sessionLengthInSeconds = Number($SESSION_LENGTH.text()) * 60;
@@ -106,6 +102,7 @@ function Application() {
                 toggleCrementButtons(DISABLED);
                 $START_PAUSE.text(PAUSE);
             } else {
+                clearInterval(countdown);
                 $START_PAUSE.text(START);
             }
         });
@@ -114,6 +111,7 @@ function Application() {
     function resetCountdownOnClick() {
         $RESET.click(function () {
             isCountdownRunning = false;
+            clearInterval(countdown);
             fillClock(LIGHT_GREEN, 0);
             toggleCrementButtons(ENABLED);
             sessionSecondsLeft = Number($SESSION_LENGTH.text()) * 60;
