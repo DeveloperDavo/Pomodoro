@@ -23,6 +23,8 @@ function Application() {
     var $SESSION_LENGTH = $("#session-length");
     var $BREAK_LENGTH = $("#break-length");
 
+    var MAX_SESSION_LENGTH = 59;
+
     var $CLOCK_MODE = $("#clock-mode");
     var $CLOCK_TIME = $("#clock-time");
 
@@ -39,9 +41,8 @@ function Application() {
     function addTimeFormatterFunctionToString() {
         String.prototype.formatTime = function () {
             var totalSeconds = parseInt(this, 10);
-            var hours = Math.floor(totalSeconds / 3600);
-            var minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
-            var seconds = totalSeconds - (hours * 3600) - (minutes * 60);
+            var minutes = Math.floor(totalSeconds / 60);
+            var seconds = totalSeconds - (minutes * 60);
 
             if (minutes < 10) {
                 minutes = "0" + minutes;
@@ -57,6 +58,12 @@ function Application() {
         crementButton.click(function () {
             var length = Number(lengthElement.text());
             var newLength = crementButton.val() === INCREMENT_BUTTON_VALUE ? ++length : --length;
+
+            var attr = 'disabled';
+            var disabled = true;
+            if ($SESSION_LENGTH === MAX_SESSION_LENGTH) {
+                $INCREMENT_SESSION.prop(attr, disabled);
+            }
 
             lengthElement.text(newLength);
 

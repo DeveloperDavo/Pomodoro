@@ -280,6 +280,15 @@ describe("application", function () {
 
     });
 
+    it('should be able to display a clock time of of 60 minutes', function () {
+        application.init();
+
+        document.getElementById('session-length').innerHTML = "59";
+
+        document.getElementById('increment-session').click();
+
+        expect(document.getElementById('clock-time').innerHTML).toEqual('60:00');
+    });
 
 });
 
