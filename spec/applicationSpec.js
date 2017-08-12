@@ -187,6 +187,15 @@ describe("application", function () {
         expect(document.getElementById('start-pause-button').innerHTML).toEqual('PAUSE');
     });
 
+    it('should display start button when paused', function () {
+        application.init();
+
+        document.getElementById('start-pause-button').click();
+        document.getElementById('start-pause-button').click();
+
+        expect(document.getElementById('start-pause-button').innerHTML).toEqual('START');
+    });
+
     it('should enable crement buttons after pausing', function () {
         application.init();
 

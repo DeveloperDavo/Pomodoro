@@ -122,6 +122,7 @@ function Application() {
                 $INCREMENT_BREAK.prop('disabled', false);
                 $DECREMENT_BREAK.prop('disabled', false);
                 $START_PAUSE.prop('disabled', true);
+                $START_PAUSE.text(START);
             }
         });
     }
