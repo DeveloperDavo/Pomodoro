@@ -135,6 +135,7 @@ function Application() {
             isCountdownRunning = false;
             fillClock(LIGHT_GREEN, 0);
             $CLOCK_TIME.text((sessionLengthInMinutes * 60).toString().formatTime());
+            $START_PAUSE.text(START);
         });
     }
 

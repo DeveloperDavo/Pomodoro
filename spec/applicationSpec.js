@@ -226,6 +226,16 @@ describe("application", function () {
         expect(document.getElementById('clock-time').innerHTML).toEqual('20:00');
     });
 
+    it('should show start button after resetting', function () {
+        application.init();
+
+        document.getElementById('start-pause-button').click();
+        document.getElementById('reset-button').click();
+
+        expect(document.getElementById('start-pause-button').innerHTML).toEqual('START');
+
+    });
+
 });
 
 function fixture(html) {
