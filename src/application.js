@@ -67,7 +67,11 @@ function Application() {
         })
     }
 
-    function startCountdown() {
+    function fillClock(color, percentage) {
+        $('#clock').css('background', 'linear-gradient(to top, ' + color + ' ' + percentage + '%, #333333 0%) bottom')
+    }
+
+    function startCountdown(color) {
         var countdown = setInterval(function () {
             if (!isCountdownRunning) {
                 clearInterval(countdown);
@@ -75,6 +79,13 @@ function Application() {
             }
 
             sessionSecondsLeft--;
+
+            var sessionLengthInSeconds = Number($SESSION_LENGTH.text()) * 60;
+            var timeElapsedInSeconds = sessionLengthInSeconds - sessionSecondsLeft;
+            var percentageOfTimeElapsed = timeElapsedInSeconds / sessionLengthInSeconds * 100;
+
+            fillClock(color, percentageOfTimeElapsed);
+
             $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
         }, 1000)
     }
@@ -91,7 +102,7 @@ function Application() {
         $START_PAUSE.click(function () {
             isCountdownRunning = !isCountdownRunning;
             if (isCountdownRunning) {
-                startCountdown();
+                startCountdown(LIGHT_GREEN);
                 toggleCrementButtons(DISABLED);
                 $START_PAUSE.text(PAUSE);
             } else {
@@ -130,6 +141,7 @@ function Application() {
 
         startOrPauseCountdownOnClick();
         resetCountdownOnClick();
+
     };
 
 }

@@ -54,5 +54,16 @@
         expect(document.getElementById('clock-time').innerHTML).toEqual('25');
     });
 
+    it('should fill the clock with light green while countdown is running', function (done) {
+        application.init();
+        document.getElementById('session-length').innerHTML = "2";
+        document.getElementById('decrement-session').click();
 
+        document.getElementById('start-pause-button').click();
+        setTimeout(function () {
+            console.log(document.getElementById('clock').style.backgroundColor);
+            done();
+        }, 1000);
+
+    });
 

@@ -19,13 +19,15 @@ describe("application", function () {
             '<span id="session-length"></span>' +
             '<button id="increment-session" value="increment" class="crement-button">+</button>' +
             '</div>' +
+            '<div id="clock-border">' +
             '<div id="clock">' +
             '<h3 id="clock-mode" class="clock-text"></h3>' +
             '<h3 id="clock-time" class="clock-text"></h3>' +
             '</div>' +
+            '</div>' +
             '<div id="clock-buttons">' +
-            '<button id="start-pause-button" class="btn clock-button"></button>' +
-            '<button id="reset-button" class="btn clock-button">RESET</button>' +
+            '<button id="start-pause-button" class="clock-button"></button>' +
+            '<button id="reset-button" class="clock-button">RESET</button>' +
             '</div>' +
             '' +
             '</div>'
@@ -277,6 +279,7 @@ describe("application", function () {
         }, 1000);
 
     });
+
 
 });
 
