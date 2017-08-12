@@ -1,6 +1,9 @@
 'use strict';
 
 function Application() {
+    var DISABLED = true;
+    var ENABLED = false;
+
     var SESSION_MODE = "Session";
     var BREAK_MODE = "Break";
 
@@ -109,21 +112,23 @@ function Application() {
         startCountdown("rgb(255, 68, 68)", breakLengthInMinutes);
     }
 
+    function toggleCrementButtons(isDisabled) {
+        var attr = 'disabled';
+        $INCREMENT_SESSION.prop(attr, isDisabled);
+        $DECREMENT_SESSION.prop(attr, isDisabled);
+        $INCREMENT_BREAK.prop(attr, isDisabled);
+        $DECREMENT_BREAK.prop(attr, isDisabled);
+    }
+
     function startOrPauseCountdownOnClick() {
         $START_PAUSE.click(function () {
             isCountdownRunning = !isCountdownRunning;
             if (isCountdownRunning) {
                 startCountdown(LIGHT_GREEN, sessionLengthInMinutes);
-                $INCREMENT_SESSION.prop('disabled', true);
-                $DECREMENT_SESSION.prop('disabled', true);
-                $INCREMENT_BREAK.prop('disabled', true);
-                $DECREMENT_BREAK.prop('disabled', true);
+                toggleCrementButtons(DISABLED);
                 $START_PAUSE.text(PAUSE);
             } else {
-                $INCREMENT_SESSION.prop('disabled', false);
-                $DECREMENT_SESSION.prop('disabled', false);
-                $INCREMENT_BREAK.prop('disabled', false);
-                $DECREMENT_BREAK.prop('disabled', false);
+                toggleCrementButtons(ENABLED);
                 $START_PAUSE.text(START);
             }
         });
