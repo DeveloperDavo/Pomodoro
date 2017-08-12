@@ -82,6 +82,11 @@ function Application() {
 
     function startCountdown() {
         var countdown = setInterval(function () {
+            if (!isCountdownRunning) {
+                clearInterval(countdown);
+                return;
+            }
+
             sessionSecondsLeft--;
             $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
         }, 1000)

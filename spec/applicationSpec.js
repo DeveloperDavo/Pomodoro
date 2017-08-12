@@ -238,10 +238,27 @@ describe("application", function () {
 
         document.getElementById('start-pause-button').click();
 
-        setTimeout(function() {
+        setTimeout(function () {
             expect(document.getElementById('clock-time').innerHTML).toEqual('19:59');
             done();
         }, 1000);
+    });
+
+    it('should pause countdown upon clicking pause', function (done) {
+        application.init();
+        document.getElementById('session-length').innerHTML = "21";
+        document.getElementById('increment-session').click();
+
+        document.getElementById('start-pause-button').click();
+
+        setTimeout(function () {
+            document.getElementById('start-pause-button').click();
+            setTimeout(function () {
+                expect(document.getElementById('clock-time').innerHTML).toEqual('21:59');
+                done();
+            }, 1000);
+        }, 1000);
+
     });
 
 });
