@@ -21,6 +21,7 @@ function Application() {
     var $CLOCK_TIME = $("#clock-time");
 
     var $START_PAUSE = $('#start-pause-button');
+    var $RESET = $('#reset-button');
 
     var INCREMENT_BUTTON_VALUE = "increment";
 
@@ -105,7 +106,7 @@ function Application() {
         startCountdown("rgb(255, 68, 68)", breakLengthInMinutes);
     }
 
-
+    // TODO: rename to startOrPause
     function startCountdownOnClick() {
         $START_PAUSE.click(function () {
             isCountdownRunning = !isCountdownRunning;
@@ -123,6 +124,12 @@ function Application() {
                 $DECREMENT_BREAK.prop('disabled', false);
                 $START_PAUSE.text(START);
             }
+        });
+    }
+
+    function resetCountdownOnClick() {
+        $RESET.click(function () {
+            $CLOCK_TIME.text((sessionLengthInMinutes * 60).toString().formatTime());
         });
     }
 
@@ -145,6 +152,7 @@ function Application() {
         updateLengthOnClick($INCREMENT_BREAK, $BREAK_LENGTH);
 
         startCountdownOnClick();
+        resetCountdownOnClick();
     };
 
 }

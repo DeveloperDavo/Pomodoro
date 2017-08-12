@@ -23,9 +23,11 @@ describe("application", function () {
             '<h3 id="clock-mode" class="clock-text"></h3>' +
             '<h3 id="clock-time" class="clock-text"></h3>' +
             '</div>' +
-            '<div id="start-pause">' +
-            '<button id="start-pause-button" class="btn"></button>' +
+            '<div id="clock-buttons">' +
+            '<button id="start-pause-button" class="btn clock-button"></button>' +
+            '<button id="reset-button" class="btn clock-button">RESET</button>' +
             '</div>' +
+            '' +
             '</div>'
         );
         document.body.appendChild(container);
@@ -212,6 +214,17 @@ describe("application", function () {
         expect(document.getElementById('session-length').innerHTML).toEqual('16');
     });
 
+    it('should reset countdown', function () {
+        application.init();
+        document.getElementById('session-length').innerHTML = "21";
+        document.getElementById('decrement-session').click();
+
+        document.getElementById('start-pause-button').click();
+        document.getElementById('clock-time').innerHTML = "19:36";
+        document.getElementById('reset-button').click();
+
+        expect(document.getElementById('clock-time').innerHTML).toEqual('20:00');
+    });
 
 });
 
