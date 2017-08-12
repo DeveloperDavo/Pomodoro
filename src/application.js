@@ -3,11 +3,14 @@
 function Application() {
     var SESSION_MODE = "Session";
     var BREAK_MODE = "Break";
+
     var START = "START";
     var PAUSE = "PAUSE";
 
     var INITIAL_SESSION_LENGTH_IN_MINUTES = 25;
     var INITIAL_BREAK_LENGTH_IN_MINUTES = 5;
+
+    var LIGHT_GREEN = "#99CC00";
 
     var $INCREMENT_SESSION = $("#increment-session");
     var $DECREMENT_SESSION = $("#decrement-session");
@@ -111,7 +114,7 @@ function Application() {
         $START_PAUSE.click(function () {
             isCountdownRunning = !isCountdownRunning;
             if (isCountdownRunning) {
-                startCountdown("#99CC00", sessionLengthInMinutes);
+                startCountdown(LIGHT_GREEN, sessionLengthInMinutes);
                 $INCREMENT_SESSION.prop('disabled', true);
                 $DECREMENT_SESSION.prop('disabled', true);
                 $INCREMENT_BREAK.prop('disabled', true);
@@ -129,6 +132,8 @@ function Application() {
 
     function resetCountdownOnClick() {
         $RESET.click(function () {
+            isCountdownRunning = false;
+            fillClock(LIGHT_GREEN, 0);
             $CLOCK_TIME.text((sessionLengthInMinutes * 60).toString().formatTime());
         });
     }
