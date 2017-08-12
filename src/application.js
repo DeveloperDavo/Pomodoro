@@ -80,6 +80,13 @@ function Application() {
         $('#clock').css('background', 'linear-gradient(to top, ' + color + ' ' + percentage + '%, #333333 0%) bottom')
     }
 
+    function startCountdown() {
+        var countdown = setInterval(function () {
+            sessionSecondsLeft--;
+            $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
+        }, 1000)
+    }
+
     function toggleCrementButtons(isDisabled) {
         var attr = 'disabled';
         $INCREMENT_SESSION.prop(attr, isDisabled);
@@ -92,6 +99,7 @@ function Application() {
         $START_PAUSE.click(function () {
             isCountdownRunning = !isCountdownRunning;
             if (isCountdownRunning) {
+                startCountdown();
                 toggleCrementButtons(DISABLED);
                 $START_PAUSE.text(PAUSE);
             } else {
