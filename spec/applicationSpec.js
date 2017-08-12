@@ -232,8 +232,20 @@ describe("application", function () {
         document.getElementById('start-pause-button').click();
         document.getElementById('reset-button').click();
 
-        expect(document.getElementById('start-pause-button').innerHTML).toEqual('START');
+        document.getElementById('increment-session').click();
 
+        expect(document.getElementById('session-length').innerHTML).toEqual('26');
+
+    });
+
+
+    it('should enable crement buttons after resetting', function () {
+        application.init();
+
+        document.getElementById('start-pause-button').click();
+        document.getElementById('reset-button').click();
+
+        expect(document.getElementById('start-pause-button').innerHTML).toEqual('START');
     });
 
 });

@@ -138,6 +138,7 @@ function Application() {
         $RESET.click(function () {
             isCountdownRunning = false;
             fillClock(LIGHT_GREEN, 0);
+            toggleCrementButtons(ENABLED);
             $CLOCK_TIME.text((sessionLengthInMinutes * 60).toString().formatTime());
             $START_PAUSE.text(START);
         });
