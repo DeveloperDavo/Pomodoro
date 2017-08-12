@@ -67,3 +67,5 @@
 
     });
 
+// TODO: should empty the fill upon clicking reset
+

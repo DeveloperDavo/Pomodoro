@@ -114,8 +114,9 @@ function Application() {
     function resetCountdownOnClick() {
         $RESET.click(function () {
             isCountdownRunning = false;
-            sessionSecondsLeft = Number($SESSION_LENGTH.text()) * 60;
+            fillClock(LIGHT_GREEN, 0);
             toggleCrementButtons(ENABLED);
+            sessionSecondsLeft = Number($SESSION_LENGTH.text()) * 60;
             $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
             $START_PAUSE.text(START);
         });
