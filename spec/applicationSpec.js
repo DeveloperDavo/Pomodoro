@@ -6,6 +6,9 @@ describe("application", function () {
 
     beforeEach(function () {
         container = fixture(
+            '<audio id="session-alarm">' +
+            '<source src="media/alarm.mp3" type="audio/mpeg">' +
+            '</audio>' +
             '<div class="container">' +
             '<div class="length-setter" id="break-length-setter"> ' +
             '<h5>BREAK LENGTH</h5>' +
@@ -301,6 +304,21 @@ describe("application", function () {
 
         setTimeout(function () {
             expect(playAudio).toHaveBeenCalled();
+            done();
+        }, 1000);
+    });
+
+    it('should display clock time of 00:00 when session is over', function (done) {
+        application.init();
+
+        application.setSessionSecondsLeft(1);
+
+        spyOn(window, 'playAudio');
+
+        document.getElementById('start-pause-button').click();
+
+        setTimeout(function () {
+            expect(document.getElementById('clock-time').innerHTML).toEqual('00:00');
             done();
         }, 1000);
     });
