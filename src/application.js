@@ -1,5 +1,9 @@
 'use strict';
 
+function playAudio() {
+    document.getElementById("session-alarm").play();
+};
+
 function Application() {
     var DISABLED = true;
     var ENABLED = false;
@@ -86,7 +90,7 @@ function Application() {
             // sessionSecondsLeft = -1;
 
             if (sessionSecondsLeft === 0) {
-                document.getElementById("session-alarm").play();
+                playAudio();
             }
 
             if (sessionSecondsLeft === -1) {

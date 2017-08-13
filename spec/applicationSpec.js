@@ -290,6 +290,21 @@ describe("application", function () {
         expect(document.getElementById('clock-time').innerHTML).toEqual('60:00');
     });
 
+    it('should call playAudio when session is over', function (done) {
+        application.init();
+
+        application.setSessionSecondsLeft(1);
+
+        spyOn(window, 'playAudio');
+
+        document.getElementById('start-pause-button').click();
+
+        setTimeout(function () {
+            expect(playAudio).toHaveBeenCalled();
+            done();
+        }, 1000);
+    });
+
     it('should display break mode 1 second after session is over', function (done) {
         application.init();
 
