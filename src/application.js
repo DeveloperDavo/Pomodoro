@@ -83,35 +83,44 @@ function Application() {
         })
     }
 
-    function fillClock(color, percentage) {
-        $('#clock').css('background', 'linear-gradient(to top, ' + color + ' ' + percentage + '%, #333333 0%) bottom')
+    function fillClock(color, lengthElement, secondsLeft) {
+        var lengthInSeconds = Number(lengthElement.text()) * 60;
+        var timeElapsedInSeconds = lengthInSeconds - secondsLeft;
+        var percentageOfTimeElapsed = timeElapsedInSeconds / lengthInSeconds * 100;
+
+        $('#clock').css('background', 'linear-gradient(to top, ' + color + ' ' + percentageOfTimeElapsed + '%, #333333 0%) bottom')
     }
 
     function startCountdown() {
         countdownId = setInterval(function () {
             var mode;
+            var secondsLeft;
+            var lengthElement;
+            var color;
             if (session) {
                 mode = SESSION_MODE;
+                lengthElement = $SESSION_LENGTH;
+                color = LIGHT_GREEN;
+
                 sessionSecondsLeft--;
 
-                if (sessionSecondsLeft === 0) {
+                secondsLeft = sessionSecondsLeft;
+
+                if (secondsLeft === 0) {
                     playAudio("session-alarm");
                     clearInterval(countdownId);
                     session = false;
                     startCountdown();
                 }
 
-                var sessionLengthInSeconds = Number($SESSION_LENGTH.text()) * 60;
-                var timeElapsedInSeconds = sessionLengthInSeconds - sessionSecondsLeft;
-                var percentageOfTimeElapsed = timeElapsedInSeconds / sessionLengthInSeconds * 100;
-
-                fillClock(LIGHT_GREEN, percentageOfTimeElapsed);
-
-                $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
             } else {
                 mode = BREAK_MODE;
+                lengthElement = $BREAK_LENGTH;
+                color = RED;
 
                 breakSecondsLeft--;
+
+                secondsLeft = breakSecondsLeft;
 
                 if (breakSecondsLeft === 0) {
                     playAudio("break-alarm");
@@ -119,18 +128,13 @@ function Application() {
                     session = true;
                     startCountdown();
                 }
-
-
-                var breakLengthInSeconds = Number($BREAK_LENGTH.text()) * 60;
-                var breakTimeElapsedInSeconds = breakLengthInSeconds - breakSecondsLeft;
-                var percentageOfBreakTimeElapsed = breakTimeElapsedInSeconds / breakLengthInSeconds * 100;
-
-                fillClock(RED, percentageOfBreakTimeElapsed);
-
-                $CLOCK_TIME.text(breakSecondsLeft.toString().formatTime());
             }
 
             $CLOCK_MODE.text(mode); // TODO no need to do this every second
+
+            fillClock(color, lengthElement, secondsLeft);
+
+            $CLOCK_TIME.text(secondsLeft.toString().formatTime());
         }, 1000)
     }
 
@@ -161,7 +165,7 @@ function Application() {
             countdownRunning = false;
             clearInterval(countdownId);
             session = true;
-            fillClock(LIGHT_GREEN, 0);
+            fillClock(LIGHT_GREEN, $SESSION_LENGTH, INITIAL_SESSION_LENGTH_IN_MINUTES * 60);
             toggleCrementButtons(ENABLED);
             sessionSecondsLeft = Number($SESSION_LENGTH.text()) * 60;
             breakSecondsLeft = Number($BREAK_LENGTH.text()) * 60;
