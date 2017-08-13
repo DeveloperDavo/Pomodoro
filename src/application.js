@@ -91,48 +91,31 @@ function Application() {
         $('#clock').css('background', 'linear-gradient(to top, ' + color + ' ' + percentageOfTimeElapsed + '%, #333333 0%) bottom')
     }
 
+    var executeCountdown = function (mode, secondsLeft, alarmId, color, lengthElement) {
+        $CLOCK_MODE.text(mode); // TODO no need to do this every second
+
+        if (secondsLeft === 0) {
+            playAudio(alarmId);
+            clearInterval(countdownId);
+            session = !session;
+            startCountdown();
+        }
+
+        fillClock(color, lengthElement, secondsLeft);
+
+        $CLOCK_TIME.text(secondsLeft.toString().formatTime());
+    };
+
     function startCountdown() {
         countdownId = setInterval(function () {
-            var mode;
-            var secondsLeft;
-            var lengthElement;
-            var color;
-            var alarmId;
-
             if (session) {
-                mode = SESSION_MODE;
-                lengthElement = $SESSION_LENGTH;
-                color = LIGHT_GREEN;
-                alarmId = "session-alarm";
-
                 sessionSecondsLeft--;
-
-                secondsLeft = sessionSecondsLeft;
-
+                executeCountdown(SESSION_MODE, sessionSecondsLeft, "session-alarm", LIGHT_GREEN, $SESSION_LENGTH);
             } else {
-                mode = BREAK_MODE;
-                lengthElement = $BREAK_LENGTH;
-                color = RED;
-                alarmId = "break-alarm";
-
                 breakSecondsLeft--;
-
-                secondsLeft = breakSecondsLeft;
-
+                executeCountdown(BREAK_MODE, breakSecondsLeft, "break-alarm", RED, $BREAK_LENGTH);
             }
 
-            $CLOCK_MODE.text(mode); // TODO no need to do this every second
-
-            if (secondsLeft === 0) {
-                playAudio(alarmId);
-                clearInterval(countdownId);
-                session = !session;
-                startCountdown();
-            }
-
-            fillClock(color, lengthElement, secondsLeft);
-
-            $CLOCK_TIME.text(secondsLeft.toString().formatTime());
         }, 1000)
     }
 
