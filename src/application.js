@@ -72,20 +72,11 @@ function Application() {
             var length = Number(lengthElement.text());
             var newLength = crementButton.val() === INCREMENT_BUTTON_VALUE ? ++length : --length;
 
-            var attr = 'disabled';
-            var disabled = true;
-
-            // TODO: remove
-            if ($SESSION_LENGTH === MAX_SESSION_LENGTH) {
-                $INCREMENT_SESSION.prop(attr, disabled);
-            }
-
             lengthElement.text(newLength);
 
             if (lengthElement === $SESSION_LENGTH) {
                 $CLOCK_TIME.text((newLength * 60).toString().formatTime());
                 sessionSecondsLeft = newLength * 60;
-            } else {
             }
 
         })
