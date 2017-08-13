@@ -88,7 +88,7 @@ function Application() {
 
     function startCountdown(color) {
         countdownId = setInterval(function () {
-            // sessionSecondsLeft = 1;
+            sessionSecondsLeft = 1;
             if (session) {
                 sessionSecondsLeft--;
 
@@ -110,6 +110,12 @@ function Application() {
                 $CLOCK_MODE.text(BREAK_MODE);
 
                 breakSecondsLeft--;
+
+                var breakLengthInSeconds = Number($BREAK_LENGTH.text()) * 60;
+                var breakTimeElapsedInSeconds = breakLengthInSeconds - breakSecondsLeft;
+                var percentageOfBreakTimeElapsed = breakTimeElapsedInSeconds / breakLengthInSeconds * 100;
+
+                fillClock(color, percentageOfBreakTimeElapsed);
 
                 $CLOCK_TIME.text(breakSecondsLeft.toString().formatTime());
             }
