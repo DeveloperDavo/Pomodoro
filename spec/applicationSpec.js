@@ -384,6 +384,19 @@ describe("application", function () {
 
     });
 
+    it('should reset break and session mode', function () {
+        application.init();
+
+        application.setSessionSecondsLeft(0);
+        application.setBreakSecondsLeft(34);
+        application.setSession(false);
+
+        document.getElementById('reset-button').click();
+        expect(application.isSession()).toEqual(true);
+        expect(application.getSessionSecondsLeft()).toEqual(25 * 60);
+        expect(application.getBreakSecondsLeft()).toEqual(5 * 60);
+    });
+
 });
 
 function fixture(html) {

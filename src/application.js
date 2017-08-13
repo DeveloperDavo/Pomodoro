@@ -40,10 +40,10 @@ function Application() {
     var sessionSecondsLeft = INITIAL_SESSION_LENGTH_IN_MINUTES * 60;
     var breakSecondsLeft = INITIAL_BREAK_LENGTH_IN_MINUTES * 60;
 
-    var isCountdownRunning = false;
+    var countdownRunning = false;
     var countdownId = -1;
 
-    var isSession = true;
+    var session = true;
 
     function addTimeFormatterFunctionToString() {
         String.prototype.formatTime = function () {
@@ -88,14 +88,14 @@ function Application() {
 
     function startCountdown(color) {
         countdownId = setInterval(function () {
-            sessionSecondsLeft = 1;
-            if (isSession) {
+            // sessionSecondsLeft = 1;
+            if (session) {
                 sessionSecondsLeft--;
 
                 if (sessionSecondsLeft === 0) {
                     playAudio();
                     clearInterval(countdownId);
-                    isSession = false;
+                    session = false;
                     startCountdown("rgb(255, 68, 68)");
                 }
 
@@ -126,8 +126,8 @@ function Application() {
 
     function startOrPauseCountdownOnClick() {
         $START_PAUSE.click(function () {
-            isCountdownRunning = !isCountdownRunning;
-            if (isCountdownRunning) {
+            countdownRunning = !countdownRunning;
+            if (countdownRunning) {
                 startCountdown(LIGHT_GREEN);
                 toggleCrementButtons(DISABLED);
                 $START_PAUSE.text(PAUSE);
@@ -140,11 +140,13 @@ function Application() {
 
     function resetCountdownOnClick() {
         $RESET.click(function () {
-            isCountdownRunning = false;
+            countdownRunning = false;
             clearInterval(countdownId);
+            session = true;
             fillClock(LIGHT_GREEN, 0);
             toggleCrementButtons(ENABLED);
             sessionSecondsLeft = Number($SESSION_LENGTH.text()) * 60;
+            breakSecondsLeft = Number($BREAK_LENGTH.text()) * 60;
             $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
             $START_PAUSE.text(START);
         });
@@ -175,6 +177,26 @@ function Application() {
 
     this.setSessionSecondsLeft = function (seconds) {
         sessionSecondsLeft = seconds;
-    }
+    };
+
+    this.getSessionSecondsLeft = function () {
+        return sessionSecondsLeft;
+    };
+
+    this.setBreakSecondsLeft = function (seconds) {
+        breakSecondsLeft = seconds;
+    };
+
+    this.getBreakSecondsLeft = function () {
+        return breakSecondsLeft;
+    };
+
+    this.setSession = function (bool) {
+        session = bool;
+    };
+
+    this.isSession = function () {
+        return session;
+    };
 
 }
