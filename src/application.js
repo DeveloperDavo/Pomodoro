@@ -18,6 +18,7 @@ function Application() {
     var INITIAL_BREAK_LENGTH_IN_MINUTES = 5;
 
     var LIGHT_GREEN = "#99CC00";
+    var RED = "rgb(255, 68, 68)";
 
     var $INCREMENT_SESSION = $("#increment-session");
     var $DECREMENT_SESSION = $("#decrement-session");
@@ -86,7 +87,7 @@ function Application() {
         $('#clock').css('background', 'linear-gradient(to top, ' + color + ' ' + percentage + '%, #333333 0%) bottom')
     }
 
-    function startCountdown(color) {
+    function startCountdown() {
         countdownId = setInterval(function () {
             if (session) {
                 $CLOCK_MODE.text(SESSION_MODE); // TODO no need to do this every second
@@ -96,14 +97,14 @@ function Application() {
                     playAudio("session-alarm");
                     clearInterval(countdownId);
                     session = false;
-                    startCountdown("rgb(255, 68, 68)");
+                    startCountdown();
                 }
 
                 var sessionLengthInSeconds = Number($SESSION_LENGTH.text()) * 60;
                 var timeElapsedInSeconds = sessionLengthInSeconds - sessionSecondsLeft;
                 var percentageOfTimeElapsed = timeElapsedInSeconds / sessionLengthInSeconds * 100;
 
-                fillClock(color, percentageOfTimeElapsed);
+                fillClock(LIGHT_GREEN, percentageOfTimeElapsed);
 
                 $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
             } else {
@@ -115,7 +116,7 @@ function Application() {
                     playAudio("break-alarm");
                     clearInterval(countdownId);
                     session = true;
-                    startCountdown(LIGHT_GREEN);
+                    startCountdown();
                 }
 
 
@@ -123,7 +124,7 @@ function Application() {
                 var breakTimeElapsedInSeconds = breakLengthInSeconds - breakSecondsLeft;
                 var percentageOfBreakTimeElapsed = breakTimeElapsedInSeconds / breakLengthInSeconds * 100;
 
-                fillClock(color, percentageOfBreakTimeElapsed);
+                fillClock(RED, percentageOfBreakTimeElapsed);
 
                 $CLOCK_TIME.text(breakSecondsLeft.toString().formatTime());
             }
@@ -142,7 +143,7 @@ function Application() {
         $START_PAUSE.click(function () {
             countdownRunning = !countdownRunning;
             if (countdownRunning) {
-                startCountdown(LIGHT_GREEN);
+                startCountdown();
                 toggleCrementButtons(DISABLED);
                 $START_PAUSE.text(PAUSE);
             } else {
