@@ -401,6 +401,23 @@ describe("application", function () {
         }, 1000);
     });
 
+    it('should display clock time of 00:00 when break is over', function (done) {
+        application.init();
+
+        application.setSession(false);
+        application.setBreakSecondsLeft(1);
+
+        spyOn(window, 'playEndOfBreakAudio');
+
+        document.getElementById('start-pause-button').click();
+
+        setTimeout(function () {
+            expect(document.getElementById('clock-time').innerHTML).toEqual('00:00');
+            done();
+        }, 1000);
+    });
+
+
 
 });
 
