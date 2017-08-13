@@ -203,18 +203,6 @@ describe("application", function () {
         expect(document.getElementById('start-pause-button').innerHTML).toEqual('START');
     });
 
-    it('should reset countdown', function () {
-        application.init();
-        document.getElementById('session-length').innerHTML = "21";
-        document.getElementById('decrement-session').click();
-
-        document.getElementById('start-pause-button').click();
-        document.getElementById('clock-time').innerHTML = "19:36";
-        document.getElementById('reset-button').click();
-
-        expect(document.getElementById('clock-time').innerHTML).toEqual('20:00');
-    });
-
     it('should show start button after resetting', function () {
         application.init();
 
@@ -236,7 +224,7 @@ describe("application", function () {
         expect(document.getElementById('start-pause-button').innerHTML).toEqual('START');
     });
 
-    it('should countdown upon clicking start', function (done) {
+    it('should start countdown upon clicking start', function (done) {
         application.init();
         document.getElementById('session-length').innerHTML = "21";
         document.getElementById('decrement-session').click();
