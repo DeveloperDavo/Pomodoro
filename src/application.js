@@ -83,9 +83,14 @@ function Application() {
         countdown = setInterval(function () {
             sessionSecondsLeft--;
             // sessionSecondsLeft = 0;
+            // sessionSecondsLeft = -1;
 
             if (sessionSecondsLeft === 0) {
                 document.getElementById("session-alarm").play();
+            }
+
+            if (sessionSecondsLeft === -1) {
+                startBreakCountdown();
             }
 
             var sessionLengthInSeconds = Number($SESSION_LENGTH.text()) * 60;
@@ -96,6 +101,10 @@ function Application() {
 
             $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
         }, 1000)
+    }
+
+    function startBreakCountdown() {
+        $CLOCK_MODE.text(BREAK_MODE);
     }
 
     function toggleCrementButtons(isDisabled) {
@@ -154,5 +163,9 @@ function Application() {
         resetCountdownOnClick();
 
     };
+
+    this.setSessionSecondsLeft = function (seconds) {
+        sessionSecondsLeft = seconds;
+    }
 
 }

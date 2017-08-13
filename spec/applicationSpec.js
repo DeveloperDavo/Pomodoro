@@ -290,6 +290,20 @@ describe("application", function () {
         expect(document.getElementById('clock-time').innerHTML).toEqual('60:00');
     });
 
+    it('should display break mode 1 second after session is over', function (done) {
+        application.init();
+
+        application.setSessionSecondsLeft(0);
+
+        document.getElementById('start-pause-button').click();
+
+        setTimeout(function () {
+            expect(document.getElementById('clock-mode').innerHTML).toEqual('Break');
+            done();
+        }, 1000);
+
+    });
+
 });
 
 function fixture(html) {
