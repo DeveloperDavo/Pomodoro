@@ -89,8 +89,9 @@ function Application() {
 
     function startCountdown() {
         countdownId = setInterval(function () {
+            var mode;
             if (session) {
-                $CLOCK_MODE.text(SESSION_MODE); // TODO no need to do this every second
+                mode = SESSION_MODE;
                 sessionSecondsLeft--;
 
                 if (sessionSecondsLeft === 0) {
@@ -108,7 +109,7 @@ function Application() {
 
                 $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
             } else {
-                $CLOCK_MODE.text(BREAK_MODE); // TODO no need to do this every second
+                mode = BREAK_MODE;
 
                 breakSecondsLeft--;
 
@@ -128,6 +129,8 @@ function Application() {
 
                 $CLOCK_TIME.text(breakSecondsLeft.toString().formatTime());
             }
+
+            $CLOCK_MODE.text(mode); // TODO no need to do this every second
         }, 1000)
     }
 
