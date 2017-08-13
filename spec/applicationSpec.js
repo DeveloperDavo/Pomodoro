@@ -325,17 +325,17 @@ describe("application", function () {
         expect(document.getElementById('clock-time').innerHTML).toEqual('60:00');
     });
 
-    it('should call playEndOfSessionAudio when session is over', function (done) {
+    it('should call playAudio when session is over', function (done) {
         application.init();
 
         application.setSessionSecondsLeft(1);
 
-        spyOn(window, 'playEndOfSessionAudio');
+        spyOn(window, 'playAudio');
 
         document.getElementById('start-pause-button').click();
 
         setTimeout(function () {
-            expect(playEndOfSessionAudio).toHaveBeenCalled();
+            expect(playAudio).toHaveBeenCalledWith('session-alarm');
             done();
         }, 1000);
     });
@@ -345,7 +345,7 @@ describe("application", function () {
 
         application.setSessionSecondsLeft(1);
 
-        spyOn(window, 'playEndOfSessionAudio');
+        spyOn(window, 'playAudio');
 
         document.getElementById('start-pause-button').click();
 
@@ -360,7 +360,7 @@ describe("application", function () {
 
         application.setSessionSecondsLeft(1);
 
-        spyOn(window, 'playEndOfSessionAudio');
+        spyOn(window, 'playAudio');
 
         document.getElementById('start-pause-button').click();
 
@@ -385,18 +385,18 @@ describe("application", function () {
         expect(application.getBreakSecondsLeft()).toEqual(5 * 60);
     });
 
-    it('should call playEndOfBreakAudio when session is over', function (done) {
+    it('should call playAudio when session is over', function (done) {
         application.init();
 
         application.setSession(false);
         application.setBreakSecondsLeft(1);
 
-        spyOn(window, 'playEndOfBreakAudio');
+        spyOn(window, 'playAudio');
 
         document.getElementById('start-pause-button').click();
 
         setTimeout(function () {
-            expect(playEndOfBreakAudio).toHaveBeenCalled();
+            expect(playAudio).toHaveBeenCalledWith('break-alarm');
             done();
         }, 1000);
     });
@@ -407,7 +407,7 @@ describe("application", function () {
         application.setSession(false);
         application.setBreakSecondsLeft(1);
 
-        spyOn(window, 'playEndOfBreakAudio');
+        spyOn(window, 'playAudio');
 
         document.getElementById('start-pause-button').click();
 
@@ -423,7 +423,7 @@ describe("application", function () {
         application.setSession(false);
         application.setBreakSecondsLeft(1);
 
-        spyOn(window, 'playEndOfBreakAudio');
+        spyOn(window, 'playAudio');
 
         document.getElementById('start-pause-button').click();
 

@@ -1,13 +1,8 @@
 'use strict';
 
-function playEndOfSessionAudio() {
-    document.getElementById("session-alarm").play();
+function playAudio(id) {
+    document.getElementById(id).play();
 }
-
-function playEndOfBreakAudio() {
-    document.getElementById("break-alarm").play();
-}
-
 
 function Application() {
     var DISABLED = true;
@@ -98,7 +93,7 @@ function Application() {
                 sessionSecondsLeft--;
 
                 if (sessionSecondsLeft === 0) {
-                    playEndOfSessionAudio();
+                    playAudio("session-alarm");
                     clearInterval(countdownId);
                     session = false;
                     startCountdown("rgb(255, 68, 68)");
@@ -117,7 +112,7 @@ function Application() {
                 breakSecondsLeft--;
 
                 if (breakSecondsLeft === 0) {
-                    playEndOfBreakAudio();
+                    playAudio("break-alarm");
                     clearInterval(countdownId);
                     session = true;
                     startCountdown(LIGHT_GREEN);

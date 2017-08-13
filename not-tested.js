@@ -26,4 +26,6 @@
 // TODO: should not have multiple countdowns running
 // TODO: should play alarm when session is over
 // TODO: should fill the clock with red while break is running
+// TODO: should play alarm at end of session
+// TODO: should play alarm at end of break
 
