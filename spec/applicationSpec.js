@@ -435,6 +435,37 @@ describe("application", function () {
 
     });
 
+    fit('should reset time left of session after session is over', function (done) {
+        application.init();
+        application.setSessionSecondsLeft(1);
+
+        spyOn(window, 'playAudio');
+
+        document.getElementById('start-pause-button').click();
+
+        setTimeout(function () {
+            expect(application.getSessionSecondsLeft()).toEqual(25 * 60);
+            done();
+        }, 1000);
+    });
+
+    fit('should reset time left of break after break is over', function (done) {
+        application.init();
+
+        application.setSession(false);
+        application.setBreakSecondsLeft(1);
+
+        spyOn(window, 'playAudio');
+
+        document.getElementById('start-pause-button').click();
+
+        setTimeout(function () {
+            expect(application.getBreakSecondsLeft()).toEqual(5 * 60);
+            done();
+        }, 1000);
+    });
+
+
 });
 
 function fixture(html) {

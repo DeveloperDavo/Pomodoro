@@ -113,9 +113,15 @@ function Application() {
             if (session) {
                 sessionSecondsLeft--;
                 executeCountdown(SESSION_MODE, sessionSecondsLeft, "session-alarm", LIGHT_GREEN, $SESSION_LENGTH);
+                if (sessionSecondsLeft === 0) {
+                    sessionSecondsLeft = $SESSION_LENGTH.text() * 60;
+                }
             } else {
                 breakSecondsLeft--;
                 executeCountdown(BREAK_MODE, breakSecondsLeft, "break-alarm", RED, $BREAK_LENGTH);
+                if (breakSecondsLeft === 0) {
+                    breakSecondsLeft = $BREAK_LENGTH.text() * 60;
+                }
             }
 
         }, 1000)
