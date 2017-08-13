@@ -92,7 +92,9 @@ function Application() {
     }
 
     var executeCountdown = function (mode, secondsLeft, alarmId, color, lengthElement) {
-        $CLOCK_MODE.text(mode); // TODO no need to do this every second
+        if ($CLOCK_MODE.text() !== mode) {
+            $CLOCK_MODE.text(mode);
+        }
 
         if (secondsLeft === 0) {
             playAudio(alarmId);
