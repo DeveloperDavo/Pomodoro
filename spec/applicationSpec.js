@@ -417,7 +417,23 @@ describe("application", function () {
         }, 1000);
     });
 
+    it('should display session mode and time 1 second after break is over', function (done) {
+        application.init();
 
+        application.setSession(false);
+        application.setBreakSecondsLeft(1);
+
+        spyOn(window, 'playEndOfBreakAudio');
+
+        document.getElementById('start-pause-button').click();
+
+        setTimeout(function () {
+            expect(document.getElementById('clock-mode').innerHTML).toEqual('Session');
+            expect(document.getElementById('clock-time').innerHTML).toEqual('24:59');
+            done();
+        }, 2500);
+
+    });
 
 });
 

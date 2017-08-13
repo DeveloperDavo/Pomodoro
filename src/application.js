@@ -92,15 +92,9 @@ function Application() {
     }
 
     function startCountdown(color) {
-        var testToggles = function () {
-            // sessionSecondsLeft = 1;
-            // session = false;
-            // breakSecondsLeft = 1;
-        };
-
         countdownId = setInterval(function () {
-            testToggles();
             if (session) {
+                $CLOCK_MODE.text(SESSION_MODE); // TODO no need to do this every second
                 sessionSecondsLeft--;
 
                 if (sessionSecondsLeft === 0) {
@@ -118,12 +112,15 @@ function Application() {
 
                 $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
             } else {
-                $CLOCK_MODE.text(BREAK_MODE);
+                $CLOCK_MODE.text(BREAK_MODE); // TODO no need to do this every second
 
                 breakSecondsLeft--;
 
                 if (breakSecondsLeft === 0) {
                     playEndOfBreakAudio();
+                    clearInterval(countdownId);
+                    session = true;
+                    startCountdown(LIGHT_GREEN);
                 }
 
 
