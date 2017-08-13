@@ -113,6 +113,15 @@ describe("application", function () {
         expect(document.getElementById('break-length').innerHTML).toEqual('3');
     });
 
+    it('should not decrement if length is 1', function () {
+        application.init();
+        document.getElementById('break-length').innerHTML = "1";
+
+        document.getElementById('decrement-break').click();
+
+        expect(document.getElementById('break-length').innerHTML).toEqual('1');
+    });
+
     it('should display session mode upon initialisation', function () {
         application.init();
 
@@ -435,7 +444,7 @@ describe("application", function () {
 
     });
 
-    fit('should reset time left of session after session is over', function (done) {
+    it('should reset time left of session after session is over', function (done) {
         application.init();
         application.setSessionSecondsLeft(1);
 
@@ -449,7 +458,7 @@ describe("application", function () {
         }, 1000);
     });
 
-    fit('should reset time left of break after break is over', function (done) {
+    it('should reset time left of break after break is over', function (done) {
         application.init();
 
         application.setSession(false);

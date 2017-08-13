@@ -37,6 +37,7 @@ function Application() {
     var $RESET = $('#reset-button');
 
     var INCREMENT_BUTTON_VALUE = "increment";
+    var DECREMENT_BUTTON_VALUE = "decrement";
 
     var sessionSecondsLeft = INITIAL_SESSION_LENGTH_IN_MINUTES * 60;
     var breakSecondsLeft = INITIAL_BREAK_LENGTH_IN_MINUTES * 60;
@@ -64,11 +65,17 @@ function Application() {
 
     function updateLengthOnClick(crementButton, lengthElement) {
         crementButton.click(function () {
+            if (lengthElement.text() <= 1 && crementButton.val() === DECREMENT_BUTTON_VALUE) {
+                return;
+            }
+
             var length = Number(lengthElement.text());
             var newLength = crementButton.val() === INCREMENT_BUTTON_VALUE ? ++length : --length;
 
             var attr = 'disabled';
             var disabled = true;
+
+            // TODO: remove
             if ($SESSION_LENGTH === MAX_SESSION_LENGTH) {
                 $INCREMENT_SESSION.prop(attr, disabled);
             }
@@ -78,6 +85,7 @@ function Application() {
             if (lengthElement === $SESSION_LENGTH) {
                 $CLOCK_TIME.text((newLength * 60).toString().formatTime());
                 sessionSecondsLeft = newLength * 60;
+            } else {
             }
 
         })
