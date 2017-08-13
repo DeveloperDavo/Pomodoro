@@ -4,6 +4,11 @@ function playEndOfSessionAudio() {
     document.getElementById("session-alarm").play();
 }
 
+function playEndOfBreakAudio() {
+    document.getElementById("break-alarm").play();
+}
+
+
 function Application() {
     var DISABLED = true;
     var ENABLED = false;
@@ -87,8 +92,14 @@ function Application() {
     }
 
     function startCountdown(color) {
-        countdownId = setInterval(function () {
+        var testToggles = function () {
             // sessionSecondsLeft = 1;
+            // session = false;
+            // breakSecondsLeft = 1;
+        };
+
+        countdownId = setInterval(function () {
+            testToggles();
             if (session) {
                 sessionSecondsLeft--;
 
@@ -110,6 +121,11 @@ function Application() {
                 $CLOCK_MODE.text(BREAK_MODE);
 
                 breakSecondsLeft--;
+
+                if (breakSecondsLeft === 0) {
+                    playEndOfBreakAudio();
+                }
+
 
                 var breakLengthInSeconds = Number($BREAK_LENGTH.text()) * 60;
                 var breakTimeElapsedInSeconds = breakLengthInSeconds - breakSecondsLeft;

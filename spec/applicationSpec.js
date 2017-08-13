@@ -385,6 +385,23 @@ describe("application", function () {
         expect(application.getBreakSecondsLeft()).toEqual(5 * 60);
     });
 
+    it('should call playEndOfBreakAudio when session is over', function (done) {
+        application.init();
+
+        application.setSession(false);
+        application.setBreakSecondsLeft(1);
+
+        spyOn(window, 'playEndOfBreakAudio');
+
+        document.getElementById('start-pause-button').click();
+
+        setTimeout(function () {
+            expect(playEndOfBreakAudio).toHaveBeenCalled();
+            done();
+        }, 1000);
+    });
+
+
 });
 
 function fixture(html) {
