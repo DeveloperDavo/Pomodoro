@@ -41,7 +41,7 @@ function Application() {
     var breakSecondsLeft = INITIAL_BREAK_LENGTH_IN_MINUTES * 60;
 
     var isCountdownRunning = false;
-    var countdown = -1;
+    var countdownId = -1;
 
     var isSession = true;
 
@@ -87,15 +87,14 @@ function Application() {
     }
 
     function startCountdown(color) {
-        // TODO: rename to countdownId
-        countdown = setInterval(function () {
-            // sessionSecondsLeft = 1;
+        countdownId = setInterval(function () {
+            sessionSecondsLeft = 1;
             if (isSession) {
                 sessionSecondsLeft--;
 
                 if (sessionSecondsLeft === 0) {
                     playAudio();
-                    clearInterval(countdown);
+                    clearInterval(countdownId);
                     isSession = false;
                     startCountdown("rgb(255, 68, 68)");
                 }
@@ -133,7 +132,7 @@ function Application() {
                 toggleCrementButtons(DISABLED);
                 $START_PAUSE.text(PAUSE);
             } else {
-                clearInterval(countdown);
+                clearInterval(countdownId);
                 $START_PAUSE.text(START);
             }
         });
@@ -142,7 +141,7 @@ function Application() {
     function resetCountdownOnClick() {
         $RESET.click(function () {
             isCountdownRunning = false;
-            clearInterval(countdown);
+            clearInterval(countdownId);
             fillClock(LIGHT_GREEN, 0);
             toggleCrementButtons(ENABLED);
             sessionSecondsLeft = Number($SESSION_LENGTH.text()) * 60;
