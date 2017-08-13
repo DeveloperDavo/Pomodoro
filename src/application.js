@@ -2,7 +2,7 @@
 
 function playAudio() {
     document.getElementById("session-alarm").play();
-};
+}
 
 function Application() {
     var DISABLED = true;
@@ -38,9 +38,12 @@ function Application() {
     var INCREMENT_BUTTON_VALUE = "increment";
 
     var sessionSecondsLeft = INITIAL_SESSION_LENGTH_IN_MINUTES * 60;
+    var breakSecondsLeft = INITIAL_BREAK_LENGTH_IN_MINUTES * 60;
 
     var isCountdownRunning = false;
     var countdown = -1;
+
+    var isSession = true;
 
     function addTimeFormatterFunctionToString() {
         String.prototype.formatTime = function () {
@@ -84,31 +87,34 @@ function Application() {
     }
 
     function startCountdown(color) {
+        // TODO: rename to countdownId
         countdown = setInterval(function () {
-            sessionSecondsLeft--;
-            // sessionSecondsLeft = 0;
-            // sessionSecondsLeft = -1;
+            // sessionSecondsLeft = 1;
+            if (isSession) {
+                sessionSecondsLeft--;
 
-            if (sessionSecondsLeft === 0) {
-                playAudio();
+                if (sessionSecondsLeft === 0) {
+                    playAudio();
+                    clearInterval(countdown);
+                    isSession = false;
+                    startCountdown("rgb(255, 68, 68)");
+                }
+
+                var sessionLengthInSeconds = Number($SESSION_LENGTH.text()) * 60;
+                var timeElapsedInSeconds = sessionLengthInSeconds - sessionSecondsLeft;
+                var percentageOfTimeElapsed = timeElapsedInSeconds / sessionLengthInSeconds * 100;
+
+                fillClock(color, percentageOfTimeElapsed);
+
+                $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
+            } else {
+                $CLOCK_MODE.text(BREAK_MODE);
+
+                breakSecondsLeft--;
+
+                $CLOCK_TIME.text(breakSecondsLeft.toString().formatTime());
             }
-
-            if (sessionSecondsLeft === -1) {
-                startBreakCountdown();
-            }
-
-            var sessionLengthInSeconds = Number($SESSION_LENGTH.text()) * 60;
-            var timeElapsedInSeconds = sessionLengthInSeconds - sessionSecondsLeft;
-            var percentageOfTimeElapsed = timeElapsedInSeconds / sessionLengthInSeconds * 100;
-
-            fillClock(color, percentageOfTimeElapsed);
-
-            $CLOCK_TIME.text(sessionSecondsLeft.toString().formatTime());
         }, 1000)
-    }
-
-    function startBreakCountdown() {
-        $CLOCK_MODE.text(BREAK_MODE);
     }
 
     function toggleCrementButtons(isDisabled) {

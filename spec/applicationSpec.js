@@ -323,17 +323,20 @@ describe("application", function () {
         }, 1000);
     });
 
-    it('should display break mode 1 second after session is over', function (done) {
+    it('should display break mode and time 1 second after session is over', function (done) {
         application.init();
 
-        application.setSessionSecondsLeft(0);
+        application.setSessionSecondsLeft(1);
+
+        spyOn(window, 'playAudio');
 
         document.getElementById('start-pause-button').click();
 
         setTimeout(function () {
             expect(document.getElementById('clock-mode').innerHTML).toEqual('Break');
+            expect(document.getElementById('clock-time').innerHTML).toEqual('04:59');
             done();
-        }, 1000);
+        }, 2500);
 
     });
 
