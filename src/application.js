@@ -74,9 +74,12 @@ function Application() {
 
             lengthElement.text(newLength);
 
+            var secondsLeft = newLength * 60;
             if (lengthElement === $SESSION_LENGTH) {
-                $CLOCK_TIME.text((newLength * 60).toString().formatTime());
-                sessionSecondsLeft = newLength * 60;
+                $CLOCK_TIME.text((secondsLeft).toString().formatTime());
+                sessionSecondsLeft = secondsLeft;
+            } else {
+                breakSecondsLeft = secondsLeft;
             }
 
         })

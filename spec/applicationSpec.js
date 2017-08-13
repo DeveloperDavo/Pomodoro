@@ -153,6 +153,20 @@ describe("application", function () {
         expect(document.getElementById('clock-time').innerHTML).toEqual('27:00');
     });
 
+    it('should update break time when crementing break length', function () {
+        application.init();
+
+        document.getElementById('break-length').innerHTML = "4";
+        document.getElementById('increment-break').click();
+
+        expect(application.getBreakSecondsLeft()).toEqual(5 * 60);
+
+        document.getElementById('decrement-break').click();
+
+        expect(application.getBreakSecondsLeft()).toEqual(4 * 60);
+
+    });
+
     it('should not update session length when incrementing after the countdown has started', function () {
         application.init();
         document.getElementById('start-pause-button').click();
@@ -473,7 +487,6 @@ describe("application", function () {
             done();
         }, 1000);
     });
-
 
 });
 
