@@ -325,17 +325,17 @@ describe("application", function () {
         expect(document.getElementById('clock-time').innerHTML).toEqual('60:00');
     });
 
-    it('should call playAudio when session is over', function (done) {
+    it('should call playEndOfSessionAudio when session is over', function (done) {
         application.init();
 
         application.setSessionSecondsLeft(1);
 
-        spyOn(window, 'playAudio');
+        spyOn(window, 'playEndOfSessionAudio');
 
         document.getElementById('start-pause-button').click();
 
         setTimeout(function () {
-            expect(playAudio).toHaveBeenCalled();
+            expect(playEndOfSessionAudio).toHaveBeenCalled();
             done();
         }, 1000);
     });
@@ -345,7 +345,7 @@ describe("application", function () {
 
         application.setSessionSecondsLeft(1);
 
-        spyOn(window, 'playAudio');
+        spyOn(window, 'playEndOfSessionAudio');
 
         document.getElementById('start-pause-button').click();
 
@@ -360,7 +360,7 @@ describe("application", function () {
 
         application.setSessionSecondsLeft(1);
 
-        spyOn(window, 'playAudio');
+        spyOn(window, 'playEndOfSessionAudio');
 
         document.getElementById('start-pause-button').click();
 

@@ -1,6 +1,6 @@
 'use strict';
 
-function playAudio() {
+function playEndOfSessionAudio() {
     document.getElementById("session-alarm").play();
 }
 
@@ -88,12 +88,12 @@ function Application() {
 
     function startCountdown(color) {
         countdownId = setInterval(function () {
-            sessionSecondsLeft = 1;
+            // sessionSecondsLeft = 1;
             if (session) {
                 sessionSecondsLeft--;
 
                 if (sessionSecondsLeft === 0) {
-                    playAudio();
+                    playEndOfSessionAudio();
                     clearInterval(countdownId);
                     session = false;
                     startCountdown("rgb(255, 68, 68)");
