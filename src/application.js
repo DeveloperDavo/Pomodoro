@@ -97,40 +97,38 @@ function Application() {
             var secondsLeft;
             var lengthElement;
             var color;
+            var alarmId;
+
             if (session) {
                 mode = SESSION_MODE;
                 lengthElement = $SESSION_LENGTH;
                 color = LIGHT_GREEN;
+                alarmId = "session-alarm";
 
                 sessionSecondsLeft--;
 
                 secondsLeft = sessionSecondsLeft;
 
-                if (secondsLeft === 0) {
-                    playAudio("session-alarm");
-                    clearInterval(countdownId);
-                    session = false;
-                    startCountdown();
-                }
-
             } else {
                 mode = BREAK_MODE;
                 lengthElement = $BREAK_LENGTH;
                 color = RED;
+                alarmId = "break-alarm";
 
                 breakSecondsLeft--;
 
                 secondsLeft = breakSecondsLeft;
 
-                if (breakSecondsLeft === 0) {
-                    playAudio("break-alarm");
-                    clearInterval(countdownId);
-                    session = true;
-                    startCountdown();
-                }
             }
 
             $CLOCK_MODE.text(mode); // TODO no need to do this every second
+
+            if (secondsLeft === 0) {
+                playAudio(alarmId);
+                clearInterval(countdownId);
+                session = !session;
+                startCountdown();
+            }
 
             fillClock(color, lengthElement, secondsLeft);
 
