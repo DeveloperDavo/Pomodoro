@@ -69,4 +69,5 @@
 
 // TODO: should empty the fill upon clicking reset
 // TODO: should not have multiple countdowns running
+// TODO: should play alarm when session is over
 

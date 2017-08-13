@@ -82,6 +82,11 @@ function Application() {
     function startCountdown(color) {
         countdown = setInterval(function () {
             sessionSecondsLeft--;
+            // sessionSecondsLeft = 0;
+
+            if (sessionSecondsLeft === 0) {
+                document.getElementById("session-alarm").play();
+            }
 
             var sessionLengthInSeconds = Number($SESSION_LENGTH.text()) * 60;
             var timeElapsedInSeconds = sessionLengthInSeconds - sessionSecondsLeft;
