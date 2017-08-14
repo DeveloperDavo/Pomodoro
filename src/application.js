@@ -28,8 +28,6 @@ function Application() {
     var $SESSION_LENGTH = $("#session-length");
     var $BREAK_LENGTH = $("#break-length");
 
-    var MAX_SESSION_LENGTH = 59;
-
     var $CLOCK_MODE = $("#clock-mode");
     var $CLOCK_TIME = $("#clock-time");
 
