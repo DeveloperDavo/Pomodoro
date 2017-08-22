@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "Pomodoro clock",
   "scripts": {
-    "test": "./node_modules/grunt-cli/bin/grunt jasmine"
+    "test": "./node_modules/grunt-cli/bin/grunt && ./node_modules/grunt-cli/bin/grunt jasmine"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "grunt": "^1.0.1",
+    "grunt-babel": "^7.0.0",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-jasmine": "^1.1.0",
-    "jasmine": "^2.7.0"
+    "jasmine": "^2.7.0",
+    "load-grunt-tasks": "^3.5.2"
   }
 }
