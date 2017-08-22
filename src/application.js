@@ -5,7 +5,7 @@ function playAudio(id) {
 }
 
 function Application() {
-    var DISABLED = true;
+    const DISABLED = true;
     var ENABLED = false;
 
     var SESSION_MODE = "Session";
@@ -88,7 +88,9 @@ function Application() {
         var timeElapsedInSeconds = lengthInSeconds - secondsLeft;
         var percentageOfTimeElapsed = timeElapsedInSeconds / lengthInSeconds * 100;
 
-        $('#clock').css('background', 'linear-gradient(to top, ' + color + ' ' + percentageOfTimeElapsed + '%, #333333 0%) bottom')
+        $('#clock').css('background',
+            `linear-gradient(to top, ${color} ${percentageOfTimeElapsed}%, #333333 0%) bottom`
+        )
     }
 
     var executeCountdown = function (mode, secondsLeft, alarmId, color, lengthElement) {
