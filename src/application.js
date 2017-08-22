@@ -6,50 +6,50 @@ function playAudio(id) {
 
 function Application() {
     const DISABLED = true;
-    var ENABLED = false;
+    const ENABLED = false;
 
-    var SESSION_MODE = "Session";
-    var BREAK_MODE = "Break";
+    const SESSION_MODE = "Session";
+    const BREAK_MODE = "Break";
 
-    var START = "START";
-    var PAUSE = "PAUSE";
+    const START = "START";
+    const PAUSE = "PAUSE";
 
-    var INITIAL_SESSION_LENGTH_IN_MINUTES = 25;
-    var INITIAL_BREAK_LENGTH_IN_MINUTES = 5;
+    const INITIAL_SESSION_LENGTH_IN_MINUTES = 25;
+    const INITIAL_BREAK_LENGTH_IN_MINUTES = 5;
 
-    var LIGHT_GREEN = "#99CC00";
-    var RED = "rgb(255, 68, 68)";
+    const LIGHT_GREEN = "#99CC00";
+    const RED = "rgb(255, 68, 68)";
 
-    var $INCREMENT_SESSION = $("#increment-session");
-    var $DECREMENT_SESSION = $("#decrement-session");
-    var $INCREMENT_BREAK = $("#increment-break");
-    var $DECREMENT_BREAK = $("#decrement-break");
+    const $INCREMENT_SESSION = $("#increment-session");
+    const $DECREMENT_SESSION = $("#decrement-session");
+    const $INCREMENT_BREAK = $("#increment-break");
+    const $DECREMENT_BREAK = $("#decrement-break");
 
-    var $SESSION_LENGTH = $("#session-length");
-    var $BREAK_LENGTH = $("#break-length");
+    const $SESSION_LENGTH = $("#session-length");
+    const $BREAK_LENGTH = $("#break-length");
 
-    var $CLOCK_MODE = $("#clock-mode");
-    var $CLOCK_TIME = $("#clock-time");
+    const $CLOCK_MODE = $("#clock-mode");
+    const $CLOCK_TIME = $("#clock-time");
 
-    var $START_PAUSE = $('#start-pause-button');
-    var $RESET = $('#reset-button');
+    const $START_PAUSE = $('#start-pause-button');
+    const $RESET = $('#reset-button');
 
-    var INCREMENT_BUTTON_VALUE = "increment";
-    var DECREMENT_BUTTON_VALUE = "decrement";
+    const INCREMENT_BUTTON_VALUE = "increment";
+    const DECREMENT_BUTTON_VALUE = "decrement";
 
-    var sessionSecondsLeft = INITIAL_SESSION_LENGTH_IN_MINUTES * 60;
-    var breakSecondsLeft = INITIAL_BREAK_LENGTH_IN_MINUTES * 60;
+    let sessionSecondsLeft = INITIAL_SESSION_LENGTH_IN_MINUTES * 60;
+    let breakSecondsLeft = INITIAL_BREAK_LENGTH_IN_MINUTES * 60;
 
-    var countdownRunning = false;
-    var countdownId = -1;
+    let countdownRunning = false;
+    let countdownId = -1;
 
-    var session = true;
+    let session = true;
 
     function addTimeFormatterFunctionToString() {
         String.prototype.formatTime = function () {
-            var totalSeconds = parseInt(this, 10);
-            var minutes = Math.floor(totalSeconds / 60);
-            var seconds = totalSeconds - (minutes * 60);
+            const totalSeconds = parseInt(this, 10);
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = totalSeconds - (minutes * 60);
 
             if (minutes < 10) {
                 minutes = "0" + minutes;
@@ -67,12 +67,12 @@ function Application() {
                 return;
             }
 
-            var length = Number(lengthElement.text());
-            var newLength = crementButton.val() === INCREMENT_BUTTON_VALUE ? ++length : --length;
+            let length = Number(lengthElement.text());
+            const newLength = crementButton.val() === INCREMENT_BUTTON_VALUE ? ++length : --length;
 
             lengthElement.text(newLength);
 
-            var secondsLeft = newLength * 60;
+            const secondsLeft = newLength * 60;
             if (lengthElement === $SESSION_LENGTH) {
                 $CLOCK_TIME.text((secondsLeft).toString().formatTime());
                 sessionSecondsLeft = secondsLeft;
@@ -84,16 +84,16 @@ function Application() {
     }
 
     function fillClock(color, lengthElement, secondsLeft) {
-        var lengthInSeconds = Number(lengthElement.text()) * 60;
-        var timeElapsedInSeconds = lengthInSeconds - secondsLeft;
-        var percentageOfTimeElapsed = timeElapsedInSeconds / lengthInSeconds * 100;
+        const lengthInSeconds = Number(lengthElement.text()) * 60;
+        const timeElapsedInSeconds = lengthInSeconds - secondsLeft;
+        const percentageOfTimeElapsed = timeElapsedInSeconds / lengthInSeconds * 100;
 
         $('#clock').css('background',
             `linear-gradient(to top, ${color} ${percentageOfTimeElapsed}%, #333333 0%) bottom`
         )
     }
 
-    var executeCountdown = function (mode, secondsLeft, alarmId, color, lengthElement) {
+    const executeCountdown = function (mode, secondsLeft, alarmId, color, lengthElement) {
         if ($CLOCK_MODE.text() !== mode) {
             $CLOCK_MODE.text(mode);
         }
@@ -130,7 +130,7 @@ function Application() {
     }
 
     function toggleCrementButtons(isDisabled) {
-        var attr = 'disabled';
+        const attr = 'disabled';
         $INCREMENT_SESSION.prop(attr, isDisabled);
         $DECREMENT_SESSION.prop(attr, isDisabled);
         $INCREMENT_BREAK.prop(attr, isDisabled);
