@@ -46,7 +46,7 @@ function Application() {
     let session = true;
 
     function addTimeFormatterFunctionToString() {
-        String.prototype.formatTime = function () {
+        String.prototype.formatTime = function() {
             const totalSeconds = parseInt(this, 10);
             let minutes = Math.floor(totalSeconds / 60);
             let seconds = totalSeconds - (minutes * 60);
@@ -62,7 +62,7 @@ function Application() {
     }
 
     function updateLengthOnClick(crementButton, lengthElement) {
-        crementButton.click(function () {
+        crementButton.click(() => {
             if (lengthElement.text() <= 1 && crementButton.val() === DECREMENT_BUTTON_VALUE) {
                 return;
             }
@@ -93,7 +93,7 @@ function Application() {
         )
     }
 
-    const executeCountdown = function (mode, secondsLeft, alarmId, color, lengthElement) {
+    function executeCountdown(mode, secondsLeft, alarmId, color, lengthElement) {
         if ($CLOCK_MODE.text() !== mode) {
             $CLOCK_MODE.text(mode);
         }
@@ -108,10 +108,10 @@ function Application() {
         fillClock(color, lengthElement, secondsLeft);
 
         $CLOCK_TIME.text(secondsLeft.toString().formatTime());
-    };
+    }
 
     function startCountdown() {
-        countdownId = setInterval(function () {
+        countdownId = setInterval(() => {
             if (session) {
                 sessionSecondsLeft--;
                 executeCountdown(SESSION_MODE, sessionSecondsLeft, "session-alarm", LIGHT_GREEN, $SESSION_LENGTH);
@@ -138,7 +138,7 @@ function Application() {
     }
 
     function startOrPauseCountdownOnClick() {
-        $START_PAUSE.click(function () {
+        $START_PAUSE.click(() => {
             countdownRunning = !countdownRunning;
             if (countdownRunning) {
                 startCountdown();
@@ -152,7 +152,7 @@ function Application() {
     }
 
     function resetCountdownOnClick() {
-        $RESET.click(function () {
+        $RESET.click(() => {
             countdownRunning = false;
             clearInterval(countdownId);
             session = true;
@@ -188,27 +188,27 @@ function Application() {
 
     };
 
-    this.setSessionSecondsLeft = function (seconds) {
+    this.setSessionSecondsLeft = (seconds) => {
         sessionSecondsLeft = seconds;
     };
 
-    this.getSessionSecondsLeft = function () {
+    this.getSessionSecondsLeft = () => {
         return sessionSecondsLeft;
     };
 
-    this.setBreakSecondsLeft = function (seconds) {
+    this.setBreakSecondsLeft = (seconds) => {
         breakSecondsLeft = seconds;
     };
 
-    this.getBreakSecondsLeft = function () {
+    this.getBreakSecondsLeft = () => {
         return breakSecondsLeft;
     };
 
-    this.setSession = function (bool) {
+    this.setSession = (bool) => {
         session = bool;
     };
 
-    this.isSession = function () {
+    this.isSession = () => {
         return session;
     };
 
