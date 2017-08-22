@@ -129,7 +129,7 @@ function Application() {
         }, 1000)
     }
 
-    function toggleCrementButtons(isDisabled) {
+    function toggleCrementButtons(isDisabled = true) {
         const attr = 'disabled';
         $INCREMENT_SESSION.prop(attr, isDisabled);
         $DECREMENT_SESSION.prop(attr, isDisabled);
@@ -142,7 +142,7 @@ function Application() {
             countdownRunning = !countdownRunning;
             if (countdownRunning) {
                 startCountdown();
-                toggleCrementButtons(DISABLED);
+                toggleCrementButtons();
                 $START_PAUSE.text(PAUSE);
             } else {
                 clearInterval(countdownId);
