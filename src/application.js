@@ -129,7 +129,7 @@ function Application() {
         }, 1000)
     }
 
-    function toggleCrementButtons(isDisabled = true) {
+    function toggleCrementButtons(isDisabled = DISABLED) {
         const attr = 'disabled';
         $INCREMENT_SESSION.prop(attr, isDisabled);
         $DECREMENT_SESSION.prop(attr, isDisabled);
