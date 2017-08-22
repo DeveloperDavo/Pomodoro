@@ -5,7 +5,7 @@ module.exports = function (grunt) {
         jasmine: {
             src: ['dist/**/*.js'],
             options: {
-                specs: ['spec/**/*Spec.js'],
+                specs: ['distSpec/**/*Spec.js'],
                 vendor: [
                     'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'
                 ]
@@ -18,7 +18,8 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'dist/application.js': 'src/application.js'
+                    'dist/application.js': 'src/application.js',
+                    'distSpec/applicationSpec.js': 'spec/applicationSpec.js',
                 }
             }
         }
