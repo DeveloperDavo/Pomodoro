@@ -2,9 +2,9 @@
 
 describe("application", function () {
 
-    var container, application;
+    let container, application;
 
-    beforeEach(function () {
+    beforeEach(() => {
         container = fixture(
             '<audio id="session-alarm">' +
             '<source src="media/alarm.mp3" type="audio/mpeg">' +
@@ -39,7 +39,7 @@ describe("application", function () {
         application = new Application(document);
     });
 
-    afterEach(function () {
+    afterEach(() => {
         document.body.removeChild(container);
     });
 
@@ -491,7 +491,7 @@ describe("application", function () {
 });
 
 function fixture(html) {
-    var div = window.document.createElement('div');
+    const div = window.document.createElement('div');
     div.innerHTML = html;
     return div;
 }
